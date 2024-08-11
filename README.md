@@ -9,3 +9,7 @@
 - git pull origin main --allow-unrelated-histories
 - git commit -m "pull README file from remote"
 - git push -u origin main
+
+#### Initialize data type as array
+
+- Type: [String]

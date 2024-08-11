@@ -21,4 +21,15 @@ const addPost = async (req, res) => {
     }
 }
 
-export {addPost}
+const listPost = async (req, res) => {
+    try {
+        //using this model to fetch all the post item
+        const posts = await postModel.find({});
+        res.json({success:true, data:posts})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false, message:"Error"})
+    }
+}
+
+export {addPost, listPost}
