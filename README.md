@@ -13,3 +13,7 @@
 #### Initialize data type as array
 
 - Type: [String]
+
+#### Test inside the thunder Client for add with array and remove item by id
+
+- Check by the screenshot
