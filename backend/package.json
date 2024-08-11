@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "### Dependencies setup",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "server": "nodemon server.js",
-    "type": "module"
+    "server": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

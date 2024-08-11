@@ -5,26 +5,26 @@ import postRouter from "./routers/postRoute.js"
 
 // app config
 const app = express()
-const port = 4000
+const port = 4001
 
-// Middleware
-// Using this express skipMiddlewareFunction, whenever we get the request from frontend to backend
+// middleware
+// This express, using this middleware, whenever we get the request from frontend to backend
 app.use(express.json())
-// Access the backend from any frontend
+//access the backend from any frontend
 app.use(cors())
 
-// DB Connection
+//DB Connection
 connectDB();
 
-//API endpoints
+// API endpoints
 app.use("/api/post", postRouter)
 
-// HTTP method, liquid the data from server like get(), post(), update(), delete()
-app.get("/", (req, res) => {
+// http method, liquid the data from server, like get(), post(), update(), delete()
+app.get("/", (req, res)=> {
     res.send("API Working")
 })
 
-// to run the express server
-app.listen(port, ()=>{
-    console.log(`Server started on http://localhost:${port}`)
+//To run the express server
+app.listen(port, ()=> {
+    console.log(`Server Started on http://localhost:${port}`)
 })
