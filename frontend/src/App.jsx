@@ -5,10 +5,13 @@ import { Routes, Route } from 'react-router-dom'
 import AddJob from "./pages/AddJob"
 import ListJob from "./pages/ListJob"
 import ViewCalendar from "./pages/ViewCalendar"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <div>
+      <ToastContainer />
       <Navbar />
       <hr />
       <div className='flex flex-nowrap'>

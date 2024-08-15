@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import MultiSelectWithCreate from '../components/MultiSelect'
 
 const AddJob = () => {
   const [data, setData] = useState({
@@ -39,9 +40,7 @@ const AddJob = () => {
 
         <div className='flex flex-col mb-4'>
           <p>Required Skill*</p>
-          <select onChange={onChangeHandler} name="required_skill" className='p-3 border border-gray-400 rounded-md' required>
-            <option value=""></option>
-          </select>
+          <MultiSelectWithCreate></MultiSelectWithCreate>
         </div>
 
         <div className='flex flex-col mb-4'>
