@@ -1,5 +1,11 @@
 # Content-Organizer
 
+## Purpose of the Web App
+
+## Language use
+
+ReactJS, Tailwind CSS, HTML/CSS, Express
+
 ### New Things Learn
 
 #### When create new respositories with README.md file
@@ -17,3 +23,7 @@
 #### Test inside the thunder Client for add with array and remove item by id
 
 - Check by the screenshot
+
+#### [React-Select dependencies](https://react-select.com/home)
+
+npm i --save react-select
