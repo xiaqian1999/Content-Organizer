@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import MultiSelectWithCreate from '../components/MultiSelect'
+// import MultiSelectWithCreate from '../components/MultiSelect'
+import Select from 'react-select';
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 const AddJob = () => {
+  const url = "http://localhost:4001";
+
   const [data, setData] = useState({
     title: "",
     application_url: "",
@@ -14,15 +19,34 @@ const AddJob = () => {
     rate_interest: ""
   })
 
+  const [skills, setSkills] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setData(data => ({...data, [name]:value}))
   }
 
+  const fetchSkills = async () => {
+    try {
+      const response = await axios.get(`${url}/api/skill/skills`);
+      console.log(response.data);
+
+      const skillData = response.data.data.map(skill => ({
+        value: skill.value,
+        label: skill.label,
+      }))
+      setSkills(skillData);
+    } catch (error) {
+      // toast.error("Error")
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    console.log(data)
-  }, [data])
+    fetchSkills();
+  }, [])
 
   return (
     <div className='w-[70%] ml-5 mt-5 text-gray-600'>
@@ -40,7 +64,7 @@ const AddJob = () => {
 
         <div className='flex flex-col mb-4'>
           <p>Required Skill*</p>
-          <MultiSelectWithCreate></MultiSelectWithCreate>
+          <Select isMulti options={skills} value={selectedSkills} onChange={setSelectedSkills} placeholder="Select or add skill" />
         </div>
 
         <div className='flex flex-col mb-4'>
