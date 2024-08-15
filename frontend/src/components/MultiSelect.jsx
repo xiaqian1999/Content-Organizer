@@ -30,12 +30,42 @@ const MultiSelectWithCreate = () => {
         setSelectOptions((prevSelected) => [...prevSelected, newOption]);
     }
 
+    const customComponents = {
+        Option: (props) => {
+            const {innerRef, innerProps, data} = props;
+            return (
+                <div ref={innerRef} {...innerProps}>
+                    {data.label}
+                </div>
+            );
+        },
+        Menu: (props) => {
+            return (
+                <components.Menu {...props}>
+                    {props.children}
+                    <div
+                        style={{
+                            padding: '10px',
+                            cursor: 'pointer',
+                            color: '#007bff',
+                            textAlign: 'center',
+                        }}
+                        onClick={()=> handleCreate(prompt('Enter new option:'))}
+                    >
+                        Add "{props.selectProps.inputValue}"
+                    </div>
+                </components.Menu>
+            )
+        }
+    }
+
     return (
         <Select 
             isMulti
             options={options}
             value={selectedOptions}
             onChange={handleChange}
+            components={customComponents}
             placeholder="Select or type new option..."
         />
     )
