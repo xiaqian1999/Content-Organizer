@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import { connectDB } from "./config/db.js"
 import postRouter from "./routers/postRoute.js"
+import skillRouter from "./routers/skillRoute.js"
 
 // app config
 const app = express()
@@ -18,6 +19,7 @@ connectDB();
 
 // API endpoints
 app.use("/api/post", postRouter)
+app.use("/api/skill", skillRouter)
 
 // http method, liquid the data from server, like get(), post(), update(), delete()
 app.get("/", (req, res)=> {
