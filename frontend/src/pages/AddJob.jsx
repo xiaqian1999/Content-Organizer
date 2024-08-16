@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // import MultiSelectWithCreate from '../components/MultiSelect'
+import CreatableSelect from 'react-select/creatable';
 import Select from 'react-select';
 import axios from "axios";
 import { toast } from 'react-toastify';
@@ -89,7 +90,24 @@ const AddJob = () => {
       }))
       setSkills(skillData);
     } catch (error) {
-      // toast.error("Error")
+      toast.error("Error")
+      console.log(error)
+    }
+  }
+
+  const createSkills = async (inputValue) => {
+    const newSkill = {
+      value: inputValue.toLowerCase().replace(/\W/g, '_'),
+      label: inputValue
+    }
+
+    try {
+      const response = await axios.post(`${url}/api/skill/skills`, newSkill);
+      const createdSkill = response.data;
+      setSkills(prevOptions => [...prevOptions, createdSkill]);
+      setSelectedSkills(prevOptions => [...prevOptions, createdSkill]);
+    } catch (error) {
+      toast.error("Error")
       console.log(error)
     }
   }
@@ -114,11 +132,12 @@ const AddJob = () => {
 
         <div className='flex flex-col mb-4'>
           <p>Required Skill*</p>
-          <Select 
+          <CreatableSelect 
             isMulti 
             options={skills} 
             value={selectedSkills} 
             onChange={setSelectedSkills} 
+            onCreateOption={createSkills}
             placeholder="Select or add skill" />
         </div>
 
