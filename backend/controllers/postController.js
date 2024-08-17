@@ -9,8 +9,12 @@ const addPost = async (req, res) => {
             return res.status(400).send({error: "Skills must be an array of strings"})
         }
 
+        // Ensure unique skills in the backend
+        const uniqueRequiredSkills = [...new Set(required_skill)];
+        const uniqueOptionalSkills = [...new Set(optional_skill)];
+
         const post = new postModel({
-            title, application_url, required_skill, optional_skill, salary_range, year_of_experience,locations, additional_note, rate_interest
+            title, application_url, required_skill:uniqueRequiredSkills, optional_skill:uniqueOptionalSkills, salary_range, year_of_experience,locations, additional_note, rate_interest
         })
 
         await post.save();

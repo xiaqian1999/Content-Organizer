@@ -31,14 +31,18 @@ const AddJob = ({url}) => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
+    // Ensure unique skills by converting to Set and back to Array
+    // Use Javascript Set
+    const uniqueRequiredSkills = [... new Set(requiredSkills.map(skill => skill.value))];
+    const uniqueOptionalSkills = [... new Set(optionalSkills.map(skill => skill.value))];
+
     //In this case we don't use FormData, where the data is send as "multipart/form-data", it's different from JSON
     //Therefore only need to change here for the postData, no backend change needed
-
     const postData = {
       title: data.title,
       application_url: data.application_url,
-      required_skill: requiredSkills.map(skill => skill.value),
-      optional_skill: optionalSkills.map(skill => skill.value),
+      required_skill: uniqueRequiredSkills,
+      optional_skill: uniqueOptionalSkills,
       salary_range: data.salary_range,
       year_of_experience: data.year_of_experience,
       locations: data.locations,
