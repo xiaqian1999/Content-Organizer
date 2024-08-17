@@ -8,9 +8,10 @@ const ListJob = ({url}) => {
   const [list, setList] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState('');
 
+
   const fetchList = async () => {
     try {
-      const response  = await axios.get(`${url}/api/post/list`);
+      const response = await axios.get(`${url}/api/post/list`);
       // console.log(response.data);
 
       setList(response.data.data);
@@ -29,6 +30,16 @@ const ListJob = ({url}) => {
       titleMatch || requiredSkillMatch || optionalSkillMatch
     )
   })
+
+  const removeList = async (postId) => {
+    try {
+      const response = await axios.post(`${url}/api/post/remove`, {id:postId});
+      await fetchList();
+      toast.success(response.data.message)
+    } catch (error) {
+      toast.error(response.data.message)
+    }
+  }
 
   useEffect(() => {
     fetchList();
@@ -59,7 +70,8 @@ const ListJob = ({url}) => {
             year_of_experience={item.year_of_experience}
             locations={item.locations}
             rate_interest={item.rate_interest}
-            additional_note={item.additional_note} />
+            additional_note={item.additional_note}
+            removeList={removeList} />
         })}
       </div>
     </div>
