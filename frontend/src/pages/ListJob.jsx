@@ -63,7 +63,7 @@ const ListJob = ({url}) => {
             key={index} 
             id={item._id} 
             title={item.title} 
-            application_link={item.application_link} 
+            application_url={item.application_url} 
             required_skill={item.required_skill} 
             optional_skill={item.optional_skill} 
             salary_range={item.salary_range}
