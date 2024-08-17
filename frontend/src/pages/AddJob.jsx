@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import MultiSelectWithCreate from '../components/MultiSelect'
-import CreatableSelect from 'react-select/creatable';
-import Select from 'react-select';
+import MultiSelectWithCreate from '../components/MultiSelect'
 import axios from "axios";
 import { toast } from 'react-toastify';
 
@@ -19,10 +17,6 @@ const AddJob = () => {
     additional_note: "",
     rate_interest: 0
   })
-
-  const [skills, setSkills] = useState([]);
-  const [selectedSkills, setSelectedSkills] = useState([]);
-  // console.log( selectedSkills.map(skill => skill.value));
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -79,44 +73,6 @@ const AddJob = () => {
     }
   }
 
-  const fetchSkills = async () => {
-    try {
-      const response = await axios.get(`${url}/api/skill/skills`);
-      // console.log(response.data);
-
-      const skillData = response.data.data.map(skill => ({
-        value: skill.value,
-        label: skill.label,
-      }))
-      setSkills(skillData);
-    } catch (error) {
-      toast.error("Error")
-      console.log(error)
-    }
-  }
-
-  const createSkills = async (inputValue) => {
-    const newSkill = {
-      value: inputValue.toLowerCase().replace(/\W/g, '_'),
-      label: inputValue
-    }
-
-    try {
-      const response = await axios.post(`${url}/api/skill/skills`, newSkill);
-      const createdSkill = response.data;
-      setSkills(prevOptions => [...prevOptions, createdSkill]);
-      setSelectedSkills(prevOptions => [...prevOptions, createdSkill]);
-    } catch (error) {
-      toast.error("Error")
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchSkills();
-    console.log(data)
-  }, [])
-
   return (
     <div className='w-[70%] ml-5 mt-5 text-gray-600'>
       <form className='flex flex-col w-full' onSubmit={onSubmitHandler}>
@@ -132,13 +88,7 @@ const AddJob = () => {
 
         <div className='flex flex-col mb-4'>
           <p>Required Skill*</p>
-          <CreatableSelect 
-            isMulti 
-            options={skills} 
-            value={selectedSkills} 
-            onChange={setSelectedSkills} 
-            onCreateOption={createSkills}
-            placeholder="Select or add skill" />
+          <MultiSelectWithCreate />
         </div>
 
         <div className='flex flex-col mb-4'>

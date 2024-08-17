@@ -1,73 +1,64 @@
-import React, { useState } from 'react';
-import Select, { components } from 'react-select'
+import React, { useEffect, useState } from 'react';
+import CreatableSelect from 'react-select/creatable';
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 const MultiSelectWithCreate = () => {
-    const [options, setOptions] = useState([
-        { value: 'html/css', label: 'html/css' },
-        { value: 'react', label: 'react' },
-        { value: 'tailwind', label: 'tailwind' },
-    ]);
-    const [selectedOptions, setSelectOptions] = useState([]);
+    const url = "http://localhost:4001";
 
-    //updates the selected options when user selects or deselects an option
-    const handleChange = (selected) => {
-        setSelectOptions(selected);
+    const [skills, setSkills] = useState([]);
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    
+    // fetch the skills from the DB
+    const fetchSkills = async () => {
+        try {
+            const response = await axios.get(`${url}/api/skill/skills`);
+            const skillData = response.data.data.map(skill => ({
+                value: skill.value,
+                label: skill.value
+            }))
+            setSkills(skillData);
+        } catch (error) {
+            toast.error("Error of fetching skill")
+            console.log(error)
+        }
     }
 
     //creates a new option and add it to both "options" and "selectedOptions" when the user enters a new value
-    const handleCreate = (inputValue) => {
-        const newOption = {
+    const createSkills = async (inputValue) => {
+        const newSkill = {
             // \W means "any non word character"
             // /  /g means "find globally", therefore /\W/g means that find globally any non word character
-            value: inputValue.toLowerCase().replace(/\W/g, ''),
+            value: inputValue.toLowerCase().replace(/\W/g, '_'),
             label: inputValue,
         };
 
         // [...] is used to expand or copy elements from an iterable into a new array
-        // In this case, it's used to create a new array that includes all existing items plus any new items you want to add. ex: create a new array by taking all elemtns from prevOptions then add newOption to the end of the array.
+        // In this case, it's used to create a new array that includes all existing items plus any new items you want to add. ex: create a new array by taking all elemtns from prevOptions then add newSkill to the end of the array.
         // Naming doesn't matter but "prev" immediately communicates that these variables hold the previous state.
-        setOptions((prevOptions) => [...prevOptions, newOption]);
-        setSelectOptions((prevSelected) => [...prevSelected, newOption]);
-    }
-
-    const customComponents = {
-        Option: (props) => {
-            const {innerRef, innerProps, data} = props;
-            return (
-                <div ref={innerRef} {...innerProps}>
-                    {data.label}
-                </div>
-            );
-        },
-        Menu: (props) => {
-            return (
-                <components.Menu {...props}>
-                    {props.children}
-                    <div
-                        style={{
-                            padding: '10px',
-                            cursor: 'pointer',
-                            color: '#007bff',
-                            textAlign: 'center',
-                        }}
-                        onClick={()=> handleCreate(prompt('Enter new option:'))}
-                    >
-                        Add "{props.selectProps.inputValue}"
-                    </div>
-                </components.Menu>
-            )
+        try {
+            const response = await axios.post(`${url}/api/skill/skills`, newSkill);
+            const createdSkill = response.data
+            setSkills((prevSkills) => [...prevSkills, createdSkill]);
+            setSelectedSkills((prevSkills) => [...prevSkills, createdSkill]);
+        } catch (error) {
+            toast.error("Error of fetching skill")
+            console.log(error)
         }
     }
 
+    useEffect(() => {
+        fetchSkills();
+    })
+
     return (
-        <Select 
-            isMulti
-            options={options}
-            value={selectedOptions}
-            onChange={handleChange}
-            components={customComponents}
-            placeholder="Select or type new option..."
-        />
+        <CreatableSelect 
+            isMulti 
+            options={skills} 
+            value={selectedSkills} 
+            onChange={setSelectedSkills} 
+            onCreateOption={createSkills}
+            placeholder="Select or add skill" />
     )
 };
 
