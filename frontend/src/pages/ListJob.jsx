@@ -23,7 +23,7 @@ const ListJob = ({url}) => {
   })
 
   return (
-    <div className='job-display-list mt-5 grid gap-[30px]'>
+    <div className='mt-5 mx-10 grid ss:grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 w-full'>
       {list.map((item, index) => {
         return <ListItems 
           key={index} 
@@ -32,7 +32,11 @@ const ListJob = ({url}) => {
           application_link={item.application_link} 
           required_skill={item.required_skill} 
           optional_skill={item.optional_skill} 
-          salary_range={item.salary_range} />
+          salary_range={item.salary_range}
+          year_of_experience={item.year_of_experience}
+          locations={item.locations}
+          rate_interest={item.rate_interest}
+          additional_note={item.additional_note} />
       })}
     </div>
   )
