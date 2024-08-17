@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 const AddJob = ({url}) => {
 
   //used for selectize
+  const port_url = url;
   const [requiredSkills, setRequiredSkills] = useState([]);
   const [optionalSkills, setOptionalSkills] = useState([]);
 
@@ -91,12 +92,12 @@ const AddJob = ({url}) => {
 
         <div className='flex flex-col mb-4'>
           <p>Required Skill*</p>
-          <MultiSelectWithCreate selectedSkills={requiredSkills} setSelectedSkills={setRequiredSkills}  />
+          <MultiSelectWithCreate selectedSkills={requiredSkills} setSelectedSkills={setRequiredSkills} url={port_url} />
         </div>
 
         <div className='flex flex-col mb-4'>
           <p>Optional Skill</p>
-          <MultiSelectWithCreate selectedSkills={optionalSkills} setSelectedSkills={setOptionalSkills}  />
+          <MultiSelectWithCreate selectedSkills={optionalSkills} setSelectedSkills={setOptionalSkills} url={port_url} />
         </div>
 
         <div className='flex flex-wrap justify-between my-2'>

@@ -3,8 +3,7 @@ import CreatableSelect from 'react-select/creatable';
 import axios from "axios";
 import { toast } from 'react-toastify';
 
-const MultiSelectWithCreate = ({selectedSkills, setSelectedSkills}) => {
-    const url = "http://localhost:4001";
+const MultiSelectWithCreate = ({selectedSkills, setSelectedSkills, url}) => {
 
     const [skills, setSkills] = useState([]);
     
