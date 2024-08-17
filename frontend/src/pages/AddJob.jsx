@@ -3,8 +3,11 @@ import MultiSelectWithCreate from '../components/MultiSelect'
 import axios from "axios";
 import { toast } from 'react-toastify';
 
-const AddJob = () => {
-  const url = "http://localhost:4001";
+const AddJob = ({url}) => {
+
+  //used for selectize
+  const [requiredSkills, setRequiredSkills] = useState([]);
+  const [optionalSkills, setOptionalSkills] = useState([]);
 
   const [data, setData] = useState({
     title: "",
@@ -33,8 +36,8 @@ const AddJob = () => {
     const postData = {
       title: data.title,
       application_url: data.application_url,
-      required_skill: selectedSkills.map(skill => skill.value),
-      optional_skill: data.optional_skill,
+      required_skill: requiredSkills.map(skill => skill.value),
+      optional_skill: optionalSkills.map(skill => skill.value),
       salary_range: data.salary_range,
       year_of_experience: data.year_of_experience,
       locations: data.locations,
@@ -88,12 +91,12 @@ const AddJob = () => {
 
         <div className='flex flex-col mb-4'>
           <p>Required Skill*</p>
-          <MultiSelectWithCreate />
+          <MultiSelectWithCreate selectedSkills={requiredSkills} setSelectedSkills={setRequiredSkills}  />
         </div>
 
         <div className='flex flex-col mb-4'>
           <p>Optional Skill</p>
-          <input onChange={onChangeHandler} value={data.optional_skill} type="text" name="optional_skill" className='p-3 border border-gray-400 rounded-md' />
+          <MultiSelectWithCreate selectedSkills={optionalSkills} setSelectedSkills={setOptionalSkills}  />
         </div>
 
         <div className='flex flex-wrap justify-between my-2'>

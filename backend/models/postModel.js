@@ -4,7 +4,7 @@ const postSchema = new mongoose.Schema({
     title: {type: String, required:true},
     application_url: {type: String, required:true},
     required_skill: {type: [String], required:true},
-    optional_skill: {type: String, required:false},
+    optional_skill: {type: [String], required:false},
     salary_range: {type: Number, required:false},
     year_of_experience: {type: String, required:false},
     locations: {type:String, required: false},
