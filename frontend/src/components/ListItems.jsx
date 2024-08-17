@@ -3,7 +3,7 @@ import React from 'react'
 const ListItems = ({id, title, application_link, required_skill, optional_skill, salary_range, year_of_experience, locations, rate_interest, additional_note}) => {
   return (
     <div id={id} className='w-full h-96 m-auto rounded-xl shadow-lg' style={{ transition: '0.3s', animation: 'fadeIn 1s'}}>
-        <div className='py-3 bg-green-800 text-white text-center rounded-t-xl text-lg'>
+        <div className='py-3 bg-green-800 text-white text-center rounded-t-xl text-lg cursor-pointer'>
             <a href={application_link} target="_blank">{title}</a>
         </div>
         <div className='p-2'>
