@@ -14,3 +14,10 @@
 html, body{
   height: 100%;
 }
+
+/* Selectize */
+.css-b62m3t-container .css-13cymwt-control{
+  border-color: rgb(156 163 175);
+  border-radius: 0.125rem; /* 2px */
+  padding: 0.25rem; /* 8px */
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Sidebar from "./components/Sidebar"
 import { Routes, Route } from 'react-router-dom'
@@ -10,20 +10,24 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const url = "http://localhost:4001";
+  const [showAddJob, setShowAddJob] = useState(false);
 
   return (
-    <div style={{height: '100vh'}}>
+    <>
+    {showAddJob ? <AddJob url={url} setShowAddJob={setShowAddJob} /> : <></>}
+    <div>
       <ToastContainer />
       <hr />
       <div className='flex flex-nowrap'>
         <Sidebar />
         <Routes>
-          <Route path="/addjob" element={<AddJob url={url} />} />
-          <Route path="/listjob" element={<ListJob url={url} />} />
+          <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
+          <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
           <Route path="/viewcalendar" element={<ViewCalendar url={url} />} />
         </Routes>
       </div>
     </div>
+    </>
   )
 }
 

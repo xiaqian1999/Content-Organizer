@@ -3,7 +3,7 @@ import MultiSelectWithCreate from '../components/MultiSelect'
 import axios from "axios";
 import { toast } from 'react-toastify';
 
-const AddJob = ({url}) => {
+const AddJob = ({url, setShowAddJob}) => {
 
   //used for selectize
   const port_url = url;
@@ -82,59 +82,65 @@ const AddJob = ({url}) => {
   }
 
   return (
-    <div className='w-[70%] ml-5 mt-5 text-gray-600'>
-      <form className='flex flex-col w-full' onSubmit={onSubmitHandler}>
+    <div className='text-gray-600 absolute z-1 w-full h-full grid' style={{backgroundColor: '#00000090'}}>
+      <form className='flex flex-col place-self-center bg-white p-5 rounded-md' onSubmit={onSubmitHandler}>
+        <div className='text-[25px] font-bold'>Add Job</div>
+        <hr className='w-full my-2'/>
+
         <div className='flex flex-col mb-4'>
-          <p>Title*</p>
-          <input onChange={onChangeHandler} value={data.title} type="text" name="title" className='p-3 border border-gray-400 rounded-md' required/>
+          <p className=''>Title*</p>
+          <input onChange={onChangeHandler} value={data.title} type="text" name="title" className='p-2 border border-gray-400 rounded-sm' required/>
         </div>
 
         <div className='flex flex-col mb-4'>
-          <p>Application Link*</p>
-          <input onChange={onChangeHandler} value={data.application_url} type="url" name="application_url" className='p-3 border border-gray-400 rounded-md' required />
+          <p className=''>Application Link*</p>
+          <input onChange={onChangeHandler} value={data.application_url} type="url" name="application_url" className='p-2 border border-gray-400 rounded-sm' required />
         </div>
 
         <div className='flex flex-col mb-4'>
-          <p>Required Skill*</p>
+          <p className=''>Required Skill*</p>
           <MultiSelectWithCreate selectedSkills={requiredSkills} setSelectedSkills={setRequiredSkills} url={port_url} />
         </div>
 
         <div className='flex flex-col mb-4'>
-          <p>Optional Skill</p>
+          <p className=''>Optional Skill</p>
           <MultiSelectWithCreate selectedSkills={optionalSkills} setSelectedSkills={setOptionalSkills} url={port_url} />
         </div>
 
         <div className='flex flex-wrap justify-between my-2'>
           <div className='flex flex-col mb-4' style={{width: "48%"}}>
-            <p>Salary Range</p>
-            <input onChange={onChangeHandler} value={data.salary_range} type="number" name="salary_range" className='p-3 border border-gray-400 rounded-md' />
+            <p className=''>Salary Range</p>
+            <input onChange={onChangeHandler} value={data.salary_range} type="number" name="salary_range" className='p-2 border border-gray-400 rounded-sm' />
           </div>
 
           <div className='flex flex-col mb-4' style={{width: "48%"}}>
-            <p>Year of Experience</p>
-            <input onChange={onChangeHandler} value={data.year_of_experience} type="text" name="year_of_experience" className='p-3 border border-gray-400 rounded-md' />
+            <p className=''>Year of Experience</p>
+            <input onChange={onChangeHandler} value={data.year_of_experience} type="text" name="year_of_experience" className='p-2 border border-gray-400 rounded-sm' />
           </div>
         </div>
 
         <div className='flex flex-wrap justify-between my-2'>
           <div className='flex flex-col mb-4' style={{width: "48%"}}>
-            <p>Locations</p>
-            <input onChange={onChangeHandler} value={data.locations} type="text" name="locations" className='p-3 border border-gray-400 rounded-md' />
+            <p className=''>Locations</p>
+            <input onChange={onChangeHandler} value={data.locations} type="text" name="locations" className='p-2 border border-gray-400 rounded-sm' />
           </div>
 
           <div className='flex flex-col mb-4' style={{width: "48%"}}>
-            <p>Rate of Interest</p>
-            <input onChange={onChangeHandler} value={data.rate_interest} type="text" name="rate_interest" className='p-3 border border-gray-400 rounded-md' />
+            <p className=''>Rate of Interest</p>
+            <input onChange={onChangeHandler} value={data.rate_interest} type="text" name="rate_interest" className='p-2 border border-gray-400 rounded-sm' />
           </div>
         </div>
 
         <div className='flex flex-col mb-4'>
-          <p>Additional Note</p>
-          <textarea onChange={onChangeHandler} value={data.additional_note} type="text" name="additional_note" className='p-3 border border-gray-400 rounded-md'>
+          <p className=''>Additional Note</p>
+          <textarea onChange={onChangeHandler} value={data.additional_note} type="text" name="additional_note" className='p-2 border border-gray-400 rounded-sm'>
           </textarea>
         </div>
 
-        <button type="submit" className='text-white bg-green-500 hover:bg-green-600 cursor-pointer p-3 rounded-md mb-2'>Add</button>
+        <div className='flex flex-wrap mb-2 place-content-end'>
+          <button onClick={() => setShowAddJob(false)} className='text-white bg-gray-600 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded-sm mx-1'>Close</button>
+          <button type="submit" className='text-white bg-green-600 hover:bg-green-700 cursor-pointer px-3 py-2 rounded-sm mx-1'>Submit</button>
+        </div>
 
       </form>
     </div>
