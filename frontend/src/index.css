@@ -15,6 +15,10 @@ html, body{
   height: 100%;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 /* Selectize */
 .css-b62m3t-container .css-13cymwt-control{
   border-color: rgb(156 163 175);

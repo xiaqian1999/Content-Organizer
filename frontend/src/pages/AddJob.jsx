@@ -70,8 +70,8 @@ const AddJob = ({url, setShowAddJob}) => {
             additional_note: "",
             rate_interest: 0
           })
-    
           toast.success(response.data.message);
+          setShowAddJob(false)
         }else{
           console.log("ERROR: ", response.data.message);
         }
