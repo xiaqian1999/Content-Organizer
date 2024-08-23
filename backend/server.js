@@ -3,6 +3,7 @@ import cors from "cors"
 import { connectDB } from "./config/db.js"
 import postRouter from "./routers/postRoute.js"
 import skillRouter from "./routers/skillRoute.js"
+import todolistRouter from "./routers/todolistRoute.js"
 
 // app config
 const app = express()
@@ -20,6 +21,7 @@ connectDB();
 // API endpoints
 app.use("/api/post", postRouter)
 app.use("/api/skill", skillRouter)
+app.use("/api/todolist", todolistRouter)
 
 // http method, liquid the data from server, like get(), post(), update(), delete()
 app.get("/", (req, res)=> {
