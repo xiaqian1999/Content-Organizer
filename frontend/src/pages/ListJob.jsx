@@ -47,7 +47,7 @@ const ListJob = ({url, setShowAddJob}) => {
   })
 
   return (
-    <div className='m-5 w-full overflow-y-scroll' style={{height:"100vh"}}>
+    <div className='sidebar_css'>
       <Navbar />
       <div className='flex flex-wrap justify-between'>
         <p className='text-[30px] font-bold'>Open Job Positions</p>

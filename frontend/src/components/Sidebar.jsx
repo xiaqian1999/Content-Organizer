@@ -9,6 +9,9 @@ const Sidebar = () => {
             <img src={assets.logo_white} alt="" />
         </div>
         <div className='pt-5 pl-[20%] flex flex-col'>
+            <NavLink to={"/"} className="flex items-center gap-4 py-5 px-3 rounded-l-md cursor-pointer">
+                <p className='hidden sm:block'>Dashboard</p>
+            </NavLink>
             <NavLink to={"/listjob"} className="flex items-center gap-4 py-5 px-3 rounded-l-md cursor-pointer">
                 <p className='hidden sm:block'>List Job</p>
             </NavLink>

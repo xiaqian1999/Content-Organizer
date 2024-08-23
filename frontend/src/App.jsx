@@ -7,6 +7,7 @@ import ListJob from "./pages/ListJob"
 import ViewCalendar from "./pages/ViewCalendar"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './pages/Dashboard'
 
 const App = () => {
   const url = "http://localhost:4001";
@@ -21,6 +22,7 @@ const App = () => {
       <div className='flex flex-nowrap'>
         <Sidebar />
         <Routes>
+          <Route path='/' element={<Dashboard />} />
           <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
           <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
           <Route path="/viewcalendar" element={<ViewCalendar url={url} />} />
