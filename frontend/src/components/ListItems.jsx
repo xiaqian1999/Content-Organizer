@@ -3,7 +3,7 @@ import React from 'react'
 const ListItems = ({id, title, application_url, required_skill, optional_skill, salary_range, year_of_experience, locations, rate_interest, additional_note, removeList}) => {
   return (
     <div id={id} className='w-full h-[300px] m-auto shadow-md flex flex-col overflow-y-scroll hover:shadow-xl' style={{ transition: '0.3s', animation: 'fadeIn 1s'}}>
-        <div className='py-3 bg-green-800 text-white text-center rounded-t-md text-lg cursor-pointer'>
+        <div className='py-3 bg-green-800 text-white text-center rounded-t text-lg cursor-pointer'>
             <a href={application_url} target="_blank">{title}</a>
         </div>
         <div>
@@ -51,7 +51,7 @@ const ListItems = ({id, title, application_url, required_skill, optional_skill, 
             </div>
         </div>
 
-        <button onClick={()=>removeList(id)} className='py-1 px-2 bg-red-400 hover:bg-red-500 text-white text-center cursor-pointer w-fit place-self-end mr-2 mb-2 rounded-md text-sm'>Remove</button>
+        <button onClick={()=>removeList(id)} className='py-1 px-2 bg-red-400 hover:bg-red-500 text-white text-center cursor-pointer w-fit place-self-end mr-2 mb-2 rounded text-sm'>Remove</button>
     </div>
   )
 }

@@ -47,11 +47,11 @@ const ListJob = ({url, setShowAddJob}) => {
   })
 
   return (
-    <div className='my-5 mx-10 w-full overflow-y-scroll' style={{height:"100vh"}}>
+    <div className='m-5 w-full overflow-y-scroll' style={{height:"100vh"}}>
       <Navbar />
       <div className='flex flex-wrap justify-between'>
         <p className='text-[30px] font-bold'>Open Job Positions</p>
-        <button onClick={() => setShowAddJob(true)} className='bg-gray-500 text-white px-3 rounded-md hover:bg-gray-600'> + Add Job</button>
+        <button onClick={() => setShowAddJob(true)} className='bg-gray-500 text-white px-3 rounded hover:bg-gray-600'> + Add Job</button>
       </div>
       <hr className='my-5'/>
       <div>
@@ -60,11 +60,11 @@ const ListJob = ({url, setShowAddJob}) => {
                   placeholder="Search by type in anything" 
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
-                  className=' border-gray-300 border rounded-md p-2 w-10/12'
+                  className=' border-gray-300 border rounded p-2 w-10/12'
           />
-          <button className='bg-gray-500 text-white px-2 rounded-md w-1/12 cursor-pointer hover:bg-gray-600'>Filter</button>
+          <button className='bg-gray-500 text-white px-2 rounded w-1/12 cursor-pointer hover:bg-gray-600'>Filter</button>
         </div>
-        <div className='mb-3 grid ss:grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10'>
+        <div className='mb-3 grid ss:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
           {filteredList.length === 0 && <p className='text-gray-600'>No results found</p>}
           {filteredList.map((item, index) => {
             return <ListItems 
