@@ -63,7 +63,7 @@ const AddJob = ({url}) => {
             title: "",
             application_url: "",
             required_skill: [],
-            optional_skill: "",
+            optional_skill: [],
             salary_range: 0,
             year_of_experience: "",
             locations: "",

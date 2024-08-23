@@ -12,9 +12,8 @@ const App = () => {
   const url = "http://localhost:4001";
 
   return (
-    <div>
+    <div style={{height: '100vh'}}>
       <ToastContainer />
-      <Navbar />
       <hr />
       <div className='flex flex-nowrap'>
         <Sidebar />
