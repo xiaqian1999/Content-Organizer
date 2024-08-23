@@ -1,11 +1,11 @@
-import todolistModel from "../models/todolistModel";
+import todolistModel from "../models/todolistModel.js";
 
 //Add the new to do item to the list
 const addTodoItem = async (req, res) => {
     try {
         const {task, status, date} = req.body;
         const toDoItem = new todolistModel({task, status, date})
-        await post.save();
+        await toDoItem.save();
         res.json({success:true, message:"One to do list added"})
     } catch (error) {
         console.log(error)

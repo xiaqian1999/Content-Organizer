@@ -1,5 +1,5 @@
 import express from "express"
-import { addTodoItem, listAllItem } from "../controllers/todolistController"
+import { addTodoItem, listAllItem } from "../controllers/todolistController.js"
 
 const todolistRouter = express.Router();
 

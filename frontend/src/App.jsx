@@ -22,7 +22,7 @@ const App = () => {
       <div className='flex flex-nowrap'>
         <Sidebar />
         <Routes>
-          <Route path='/' element={<Dashboard />} />
+          <Route path='/' element={<Dashboard url={url} />} />
           <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
           <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
           <Route path="/viewcalendar" element={<ViewCalendar url={url} />} />
