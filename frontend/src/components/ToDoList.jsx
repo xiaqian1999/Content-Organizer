@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import UpdateStatusBtn from './UpdateStatusBtn';
 
 const ToDoList = ({port_url}) => {
 
@@ -54,6 +55,8 @@ const ToDoList = ({port_url}) => {
         }
     }
 
+    const activeList = list.filter(item => item.status==1);
+
     useEffect(() => {
         fetchList();
     })
@@ -66,10 +69,11 @@ const ToDoList = ({port_url}) => {
             </div>
             <hr />
             <div>
-                {list.map((item, index) => {
+                {activeList.map((item, index) => {
                     return (
-                        <div className='my-2' key={index}>
-                            <span className='rounded-full w-10 h-10 border border-gray-400 px-2.5 mr-1 hover:bg-green-500 cursor-pointer'></span> {item.task}
+                        <div className='my-2 flex flex-nowrap' key={index}>
+                            <UpdateStatusBtn listItem_id={item._id} url={port_url} />
+                            <p>{item.task}</p>
                         </div>
                     )
                 })}
