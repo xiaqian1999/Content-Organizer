@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const todolistSchema = new mongoose.Schema({
     task: {type: String, required: true},
     // 1 is active, 0 is inactive, in frontend only display active one
-    status: {type: String, default: 1},
+    status: {type: Number, default: 1},
     date: {type: Date, default: Date.now}
 })
 
