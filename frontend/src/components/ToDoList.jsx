@@ -62,13 +62,13 @@ const ToDoList = ({port_url}) => {
     })
 
     return (
-        <div className='border border-gray-400 rounded p-2'>
-            <div className='flex flex-wrap justify-between my-2'>
-            <p className='font-bold text-[20px]'>To Do List</p>
-            <button className='text-white bg-gray-600 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded mx-1'>Clear All</button>
+        <div className='border border-gray-400 flex flex-auto flex-col rounded p-2'>
+            <div className='flex flex-wrap justify-between my-2 '>
+                <p className='font-bold text-[20px] self-center ml-2'>To Do List</p>
+                <button className='text-white bg-gray-600 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded mx-1'>View History</button>
             </div>
             <hr />
-            <div>
+            <div className='overflow-y-scroll'>
                 {activeList.map((item, index) => {
                     return (
                         <div className='my-2 flex flex-nowrap' key={index}>
