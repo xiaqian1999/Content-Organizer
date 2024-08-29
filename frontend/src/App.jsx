@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Sidebar from "./components/Sidebar"
 import { Routes, Route, Navigate } from 'react-router-dom'
@@ -15,6 +15,16 @@ const App = () => {
   const [showAddJob, setShowAddJob] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
+
+  // Load authenticatin state from localStorage on component mount
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken){
+      // optionally, vertify the token's validity here
+      setToken(storedToken);
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   return (
     <>
