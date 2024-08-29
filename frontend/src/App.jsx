@@ -31,18 +31,20 @@ const App = () => {
     {showAddJob ? <AddJob url={url} setShowAddJob={setShowAddJob} /> : <></>}
     <div>
       <ToastContainer />
-      <hr />
       <>
         {isAuthenticated ? (
           <div className="flex flex-nowrap">
             <Sidebar />
-            <Routes>
-              <Route path="/" element={<Dashboard url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
-              <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
-              <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
-              <Route path="/viewcalendar" element={<ViewCalendar url={url} />} />
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
+            <div className='flex flex-col' style={{height: '100vh'}}>
+              <Navbar setAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />
+              <Routes>
+                <Route path="/" element={<Dashboard url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
+                <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
+                <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
+                <Route path="/viewcalendar" element={<ViewCalendar url={url} />} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+            </div>
           </div>
         ):(
           <Routes>

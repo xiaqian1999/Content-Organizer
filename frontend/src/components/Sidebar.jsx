@@ -4,7 +4,7 @@ import { assets } from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <div className='w-[300px] font-semibold text-white bg-green-700 m-5 rounded-lg' style={{height: '100vh'}}>
+    <div className='font-semibold text-white bg-green-700 m-5 rounded-lg' style={{height: '100vh', minWeight: '300px', maxWeight: '300px'}}>
         <div>
             <img src={assets.logo_white} alt="" />
         </div>
