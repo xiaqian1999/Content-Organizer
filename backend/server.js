@@ -4,6 +4,8 @@ import { connectDB } from "./config/db.js"
 import postRouter from "./routers/postRoute.js"
 import skillRouter from "./routers/skillRoute.js"
 import todolistRouter from "./routers/todolistRoute.js"
+import userRouter from "./routers/userRoute.js"
+import 'dotenv/config'
 
 // app config
 const app = express()
@@ -22,6 +24,7 @@ connectDB();
 app.use("/api/post", postRouter)
 app.use("/api/skill", skillRouter)
 app.use("/api/todolist", todolistRouter)
+app.use("/api/user", userRouter)
 
 // http method, liquid the data from server, like get(), post(), update(), delete()
 app.get("/", (req, res)=> {
