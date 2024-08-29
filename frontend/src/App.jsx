@@ -14,6 +14,7 @@ const App = () => {
   const url = "http://localhost:4001";
   const [showAddJob, setShowAddJob] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState("");
 
   return (
     <>
@@ -35,7 +36,7 @@ const App = () => {
           </div>
         ):(
           <Routes>
-            <Route path="/user" element={<UserLogin url={url} setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/user" element={<UserLogin url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
             {/* Navigate used for redirection, and path=* matches all unkown routes, providing a way to handle 404 errors */}
             <Route path="*" element={<Navigate to="/user" />} />
           </Routes>
