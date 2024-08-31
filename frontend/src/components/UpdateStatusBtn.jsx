@@ -1,10 +1,16 @@
 import React from 'react'
 
-const UpdateStatusBtn = ({listItem_id, url}) => {
+const UpdateStatusBtn = ({listItem_id, url, tracker_type}) => {
     const updateStatusHandler = () => {
         const updateStatus = async (event) => {
             try {
-                const response = await fetch(`${url}/api/todolist/update/${listItem_id}`, {method: 'PUT'});
+                let response;
+                
+                if(tracker_type){
+                    response = await fetch(`${url}/api/trackerlist/updateStatus/${listItem_id}`, {method: 'PUT'});
+                }else{
+                    response = await fetch(`${url}/api/todolist/update/${listItem_id}`, {method: 'PUT'});
+                }
                 const result = await response.json();
                 console.log('Updated Document: ', response);
             } catch (error) {

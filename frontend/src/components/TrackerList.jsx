@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
+import UpdateStatusBtn from './UpdateStatusBtn';
 
 const TrackerList = ({ title, port_url }) => {
   const [list, setList] = useState([]);
@@ -53,12 +54,26 @@ const TrackerList = ({ title, port_url }) => {
     }
   }
 
-  const dailyTracker = list.filter(item => item.tracker_type == "daily");
-  const annualTracker = list.filter(item => item.tracker_type == "annual");
+  const activeTrackerItem = list.filter(item => item.status==1);
+  const dailyTracker = activeTrackerItem.filter(item => item.tracker_type == "daily");
+  const annualTracker = activeTrackerItem.filter(item => item.tracker_type == "annual");
+  const MINUTE_MS = 10000;
 
   useEffect(() => {
     fetchList();
   })
+
+  useEffect(() => {
+    const interval = setInterval(()=>{
+      // setData({
+      //   task: "",
+      //   tracker_type: "",
+      //   status:1
+      // })
+    }, MINUTE_MS);
+    // This represents the unmount function, in which you need to clear your interval to prevent memory leaks
+    return () => clearInterval(interval);
+  }, [])
 
   return (
     <div className='border border-gray-200 flex flex-auto flex-col rounded p-4 bg-white'>
@@ -71,12 +86,18 @@ const TrackerList = ({ title, port_url }) => {
         {title === "Daily" 
           ? <div>{dailyTracker.map((item, index)=> {
             return(
-              <div key={index}>{item.task}</div>
+               <div className='my-2 flex flex-nowrap' key={index}>
+                  <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
+                  <p>{item.task}</p>
+              </div>
             )
           })}</div>
           : <div>{annualTracker.map((item, index) => {
             return (
-              <div key={index}>{item.task}</div>
+               <div className='my-2 flex flex-nowrap' key={index}>
+                  <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
+                  <p>{item.task}</p>
+              </div>
             )
           })}</div>
         }
