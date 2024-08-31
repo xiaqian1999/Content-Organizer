@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify';
 import UpdateStatusBtn from './UpdateStatusBtn';
+import IncrementCountBtn from './IncrementCountBtn';
+import RemoveItemBtn from './RemoveItemBtn';
 
 const TrackerList = ({ title, port_url }) => {
   const [list, setList] = useState([]);
@@ -57,16 +58,6 @@ const TrackerList = ({ title, port_url }) => {
     }
   }
 
-  const removeItem = async(item_id) => {
-    const response = await axios.post(`${port_url}/api/trackerlist/remove`, {id:item_id});
-    await fetchList();
-    if(response.data.success){
-      toast.success(response.data.message)
-    }else{
-      toast.success(response.data.message)
-    }
-}
-
   const activeTrackerItem = list.filter(item => item.status==1);
   const dailyTracker = activeTrackerItem.filter(item => item.tracker_type == "daily");
   const annualTracker = activeTrackerItem.filter(item => item.tracker_type == "annual");
@@ -104,10 +95,11 @@ const TrackerList = ({ title, port_url }) => {
               return(
                 <div className='my-2 flex flex-nowrap justify-between' key={index}>
                   <div className='flex flex-row'>
-                    <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
+                    {/* <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} /> */}
+                    <IncrementCountBtn />
                     <p>{item.task}</p>
                   </div>
-                  <span onClick={() => removeItem(item._id)} className='text-center text-white rounded-full h-6 w-6 bg-red-400 hover:bg-red-500 cursor-pointer'>X</span>
+                  <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} />
                 </div>
                 )
               })}
@@ -126,7 +118,7 @@ const TrackerList = ({ title, port_url }) => {
                   <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
                   <p>{item.task}</p>
                 </div>
-                <span onClick={() => removeItem(item._id)} className='text-center text-white rounded-full h-6 w-6 bg-red-400 hover:bg-red-500 cursor-pointer'>X</span>
+                <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} />
               </div>
             )
           })}</div>
