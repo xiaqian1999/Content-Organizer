@@ -8,6 +8,7 @@ const TrackerList = ({ title, port_url }) => {
   const [data, setData] = useState({
     task: "",
     tracker_type: "",
+    score: 1,
     status:1
   })
 
@@ -22,6 +23,7 @@ const TrackerList = ({ title, port_url }) => {
     const trackerListData = {
       task: data.task,
       tracker_type: title === "Daily" ? "daily" : "annual",
+      score: data.score,
       status: 1
     }
 
@@ -34,6 +36,7 @@ const TrackerList = ({ title, port_url }) => {
         setData({
           task: "",
           tracker_type: "",
+          score: 1,
           status:1
         })
       }else{
@@ -53,6 +56,16 @@ const TrackerList = ({ title, port_url }) => {
       console.log(error)
     }
   }
+
+  const removeItem = async(item_id) => {
+    const response = await axios.post(`${port_url}/api/trackerlist/remove`, {id:item_id});
+    await fetchList();
+    if(response.data.success){
+      toast.success(response.data.message)
+    }else{
+      toast.success(response.data.message)
+    }
+}
 
   const activeTrackerItem = list.filter(item => item.status==1);
   const dailyTracker = activeTrackerItem.filter(item => item.tracker_type == "daily");
@@ -78,25 +91,42 @@ const TrackerList = ({ title, port_url }) => {
   return (
     <div className='border border-gray-200 flex flex-auto flex-col rounded p-4 bg-white'>
         <p className='font-bold text-[20px] self-center ml-2'>{title} Tracker</p>
-        <form className='flex flex-wrap justify-between my-2' onSubmit={onSubmitHanlder}>
-          <input onChange={onChangeHandler} name="task" value={data.task} type="text" className='flex-1 border border-gray-400 p-2 rounded' />
-          <button type="submit" className='text-white bg-gray-600 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded mx-1'>Add</button>
+        <form className='flex flex-nowrap justify-between my-2 w-full' onSubmit={onSubmitHanlder}>
+          <input onChange={onChangeHandler} name="task" value={data.task} type="text" className='flex-1 w-4/6 border border-gray-400 p-2 rounded mx-1' />
+          <input type="number" onChange={onChangeHandler} name="score" value={data.score} className='w-1/6 border border-gray-400 p-2 rounded' />
+          <button type="submit" className='w-1/6 text-white bg-gray-600 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded mx-1'>Add</button>
         </form>
 
         {title === "Daily" 
-          ? <div>{dailyTracker.map((item, index)=> {
-            return(
-               <div className='my-2 flex flex-nowrap' key={index}>
-                  <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
-                  <p>{item.task}</p>
-              </div>
-            )
-          })}</div>
+          ? <div>
+            <div>
+              {dailyTracker.map((item, index)=> {
+              return(
+                <div className='my-2 flex flex-nowrap justify-between' key={index}>
+                  <div className='flex flex-row'>
+                    <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
+                    <p>{item.task}</p>
+                  </div>
+                  <span onClick={() => removeItem(item._id)} className='text-center text-white rounded-full h-6 w-6 bg-red-400 hover:bg-red-500 cursor-pointer'>X</span>
+                </div>
+                )
+              })}
+            </div>
+            <hr />
+            <div className='flex flex-nowrap justify-between'>
+              <p>Total Count for Today:</p>
+              <span></span>
+            </div>
+            
+          </div>
           : <div>{annualTracker.map((item, index) => {
             return (
-               <div className='my-2 flex flex-nowrap' key={index}>
+              <div className='my-2 flex flex-nowrap justify-between' key={index}>
+                <div className='flex flex-row'>
                   <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
                   <p>{item.task}</p>
+                </div>
+                <span onClick={() => removeItem(item._id)} className='text-center text-white rounded-full h-6 w-6 bg-red-400 hover:bg-red-500 cursor-pointer'>X</span>
               </div>
             )
           })}</div>
