@@ -33,7 +33,7 @@ const App = () => {
       <ToastContainer />
       <>
         {isAuthenticated ? (
-          <div className="flex flex-nowrap">
+          <div className="flex flex-nowrap bg-gray-50">
             <Sidebar />
             <div className='flex flex-col' style={{height: '100vh'}}>
               <Navbar setAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />
