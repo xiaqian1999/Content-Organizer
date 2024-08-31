@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const trackerlistSchema = new mongoose.Schema({
     task: {type:String, required:true},
     tracker_type: {type:String, required:true},
+    score: {type:Number, default: 1},
     status: {type: Number, default: 1}
 })
 
