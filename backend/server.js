@@ -7,6 +7,7 @@ import todolistRouter from "./routers/todolistRoute.js"
 import userRouter from "./routers/userRoute.js"
 import 'dotenv/config'
 import trackerlistRouter from "./routers/trackerRoute.js"
+import calendarRouter from "./routers/calendarRoute.js"
 
 // app config
 const app = express()
@@ -27,6 +28,7 @@ app.use("/api/skill", skillRouter)
 app.use("/api/todolist", todolistRouter)
 app.use("/api/user", userRouter)
 app.use("/api/trackerlist", trackerlistRouter)
+app.use("/api/calendar", calendarRouter)
 
 // http method, liquid the data from server, like get(), post(), update(), delete()
 app.get("/", (req, res)=> {
