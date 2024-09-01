@@ -11,14 +11,6 @@ const CalenderDays = ({currentDay, changeCurrentDay}) => {
     }
 
     for (let day=0; day < 42; day++) {
-        // if (day === 0 && weekdayOfFirstDay === 0){
-        //     firstDayOfMonth.setDate(firstDayOfMonth.getDate() - 7);
-        // }else if(day === 0){
-        //     firstDayOfMonth.setDate(firstDayOfMonth.getDate() + (day - weekdayOfFirstDay));
-        // }else{
-        //     firstDayOfMonth.setDate(firstDayOfMonth.getDate()+1);
-        // }
-        
         let calendarDay = {
             currentMonth: firstDayOfMonth.getMonth() === currentDay.getMonth(),
             date: new Date(firstDayOfMonth),
@@ -30,17 +22,14 @@ const CalenderDays = ({currentDay, changeCurrentDay}) => {
         currentDays.push(calendarDay);
         firstDayOfMonth.setDate(firstDayOfMonth.getDate()+1);
     }
-    // useEffect(() =>{
-    //     console.log(currentDays);
-    // }, [])
     
     return (
-        <div className='w-full flex flex-wrap justify-center box-border'>
+        <div className='w-full grid grid-cols-7 justify-center box-border border-r border-t bg-white shadow-inner'>
             {currentDays.map((day, index) => {
                 return (
                     <div key={index} 
-                        className={"relative border border-gray-500" + (day.currentMonth ? " calender-current" : "") + (day.selected ? " calender-selected" : "")} onClick={()=>changeCurrentDay(day)} 
-                        style={{width:"125px", height:"75px"}}
+                        className={"relative border-l border-b w-auto" + (day.currentMonth ? " calender-current" : "") + (day.selected ? " calender-selected" : "")} onClick={()=>changeCurrentDay(day)} 
+                        style={{height:"85px"}}
                         >
                         <p className='absolute' style={{right:"10px", color:"#a6a6a6"}}>{day.number}</p>
                     </div>

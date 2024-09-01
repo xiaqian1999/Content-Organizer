@@ -13,14 +13,14 @@ const ViewCalendar = () => {
   }
 
   return (
-    <div className='sidebar_css'>
+    <div className='pt-2'>
       <div className="flex items-center">
         <h2>{months[currentDay.getMonth()]} {currentDay.getFullYear()}</h2>
       </div>
       <div className='w-full flex-grow flex flex-col'>
-        <div className='w-full flex items-center justify-around'>
+        <div className='w-full grid grid-cols-7 justify-center box-border border-t border-l bg-white'>
           {weekdays.map((weekday, index) => {
-            return <div key={index} className="w-[100px] text-center"><p>{weekday}</p></div>
+            return <div key={index} className="w-auto text-center border-r"><p>{weekday}</p></div>
           })}
         </div>
         <CalenderDays currentDay={currentDay} changeCurrentDay={changeCurrentDay} />
