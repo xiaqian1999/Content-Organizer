@@ -2,6 +2,7 @@ import React from 'react'
 import ToDoList from '../components/ToDoList'
 import Navbar from '../components/Navbar'
 import TrackerList from '../components/TrackerList'
+import ViewCalendar from './ViewCalendar'
 
 const Dashboard = ({url}) => {
   return (
@@ -12,7 +13,7 @@ const Dashboard = ({url}) => {
             <TrackerList title="Daily" port_url={url} />
             <TrackerList title="Annual" port_url={url} />
           </div>
-          <div>Mini calendar tracker</div>
+          <ViewCalendar />
         </div>
         <ToDoList port_url={url} />
       </div>

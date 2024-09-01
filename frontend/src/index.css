@@ -41,3 +41,12 @@ html, body{
   outline: 2px solid white;
   list-style: none;
 }
+
+/* Calendar related */
+.calender-current p{
+  color: #000;
+}
+.calender-selected p{
+  color: #cc0000 !important;
+  font-weight: bold;
+}
