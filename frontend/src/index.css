@@ -28,7 +28,7 @@ html, body{
 
 .sidebar_css{
   padding: 20px;
-  width: 100%;
+  width: auto;
   overflow-y: scroll;
 }
 

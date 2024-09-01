@@ -9,7 +9,7 @@ const Dashboard = ({url}) => {
     <div className='sidebar_css'>
       <div className='grid md:grid-cols-3 gap-4 sm:grid-cols-1'>
         <div className='col-span-2 flex flex-col'>
-          <div className='grid grid-cols-2 gap-4'>
+          <div className='grid sm:grid-cols-2 gap-4 xs:grid-cols-1'>
             <TrackerList title="Daily" port_url={url} />
             <TrackerList title="Annual" port_url={url} />
           </div>
