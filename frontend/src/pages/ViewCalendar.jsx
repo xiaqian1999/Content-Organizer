@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import CalenderDays from '../components/calenderDays';
+import CalenderDays from '../components/CalenderDays';
 
-const ViewCalendar = () => {
+const ViewCalendar = ({port_url}) => {
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 
                    'July', 'August', 'September', 'October', 'November', 'December'];
@@ -23,7 +23,7 @@ const ViewCalendar = () => {
             return <div key={index} className="w-auto text-center border-r"><p>{weekday}</p></div>
           })}
         </div>
-        <CalenderDays currentDay={currentDay} changeCurrentDay={changeCurrentDay} />
+        <CalenderDays currentDay={currentDay} changeCurrentDay={changeCurrentDay} url={port_url} />
       </div>
     </div>
   )

@@ -13,7 +13,7 @@ const Dashboard = ({url}) => {
             <TrackerList title="Daily" port_url={url} />
             <TrackerList title="Annual" port_url={url} />
           </div>
-          <ViewCalendar />
+          <ViewCalendar port_url={url} />
         </div>
         <ToDoList port_url={url} />
       </div>

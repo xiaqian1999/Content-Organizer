@@ -1,9 +1,28 @@
-import React, { useEffect } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
-const CalenderDays = ({currentDay, changeCurrentDay}) => {
+const CalenderDays = ({currentDay, changeCurrentDay, url}) => {
     let firstDayOfMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
     let weekdayOfFirstDay = firstDayOfMonth.getDay();
     let currentDays = [];
+    const [dailyScores, setDailyScores] = useState({});
+
+    const fetchScores = async () => {
+        try {
+            const response = await axios.get(`${url}/api/calendar/getScores`);
+            const scores = response.data.reduce((acc, item) => {
+                acc[new Date(item.date).toDateString()] = item.daily_total_score;
+                return acc;
+            }, {});
+            setDailyScores(scores);
+        } catch (error) {
+            console.error('Error fetching scores:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchScores();
+    })
 
     //adjust firstDayOfMonth to the start of the calendar grid if the first day of the month doesn't start on Sunday
     if (weekdayOfFirstDay !== 0){
@@ -17,7 +36,8 @@ const CalenderDays = ({currentDay, changeCurrentDay}) => {
             month: firstDayOfMonth.getMonth(),
             number: firstDayOfMonth.getDate(),
             selected: firstDayOfMonth.toDateString() === currentDay.toDateString(),
-            year: firstDayOfMonth.getFullYear()
+            year: firstDayOfMonth.getFullYear(),
+            score: dailyScores[firstDayOfMonth.toDateString()] || 0
         }
         currentDays.push(calendarDay);
         firstDayOfMonth.setDate(firstDayOfMonth.getDate()+1);
@@ -32,6 +52,7 @@ const CalenderDays = ({currentDay, changeCurrentDay}) => {
                         style={{height:"85px"}}
                         >
                         <p className='absolute' style={{right:"10px", color:"#a6a6a6"}}>{day.number}</p>
+                        <p className='absolute' style={{right:"10px", top:"20px", color:"#a6a6a6"}}>{day.score}</p>
                     </div>
                 )
             })}
