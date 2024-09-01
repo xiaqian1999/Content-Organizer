@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import UpdateStatusBtn from './UpdateStatusBtn';
 import IncrementCountBtn from './IncrementCountBtn';
-import RemoveItemBtn from './RemoveItemBtn';
+import RemoveItemBtn from './removeItemBtn';
 
 const TrackerList = ({ title, port_url }) => {
   const [list, setList] = useState([]);
@@ -99,7 +99,7 @@ const TrackerList = ({ title, port_url }) => {
                     <IncrementCountBtn />
                     <p>{item.task}</p>
                   </div>
-                  <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} />
+                  <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} tracker_list={title} />
                 </div>
                 )
               })}
@@ -118,7 +118,7 @@ const TrackerList = ({ title, port_url }) => {
                   <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} />
                   <p>{item.task}</p>
                 </div>
-                <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} />
+                <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} tracker_list={title} />
               </div>
             )
           })}</div>

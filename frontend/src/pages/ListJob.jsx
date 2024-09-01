@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ListItems from '../components/ListItems';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
+
 
 const ListJob = ({url, setShowAddJob}) => {
 
@@ -78,7 +78,8 @@ const ListJob = ({url, setShowAddJob}) => {
               locations={item.locations}
               rate_interest={item.rate_interest}
               additional_note={item.additional_note}
-              removeList={removeList} />
+              jobpost_url={url}
+              fetchList={fetchList} />
           })}
         </div>
       </div>
