@@ -12,6 +12,7 @@ const getDailyScores = async (req, res) => {
 
 const updateDailyScore = async (req, res) => {
     const {date, score} = req.body; //Expecting date and score in the request body
+    console.log("Request body:", req.body); //use this line to log the request body
     try {
         const updatedScore = await calendarModel.findOneAndUpdate(
             {date: new Date(date)},

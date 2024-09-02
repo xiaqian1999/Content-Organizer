@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const IncrementCountBtn = ({scorePerItem, incrementTotalScore}) => {
+const IncrementCountBtn = ({scorePerItem, incrementTotalScore, onUpdateStatus}) => {
 
     const [score, setScore] = useState(0);
     const updateStatusHandler = () => {
@@ -9,6 +9,9 @@ const IncrementCountBtn = ({scorePerItem, incrementTotalScore}) => {
             //This called here is to ensure that the total count is updated every time the local score increase
             //This way the total count in the Tracker reflects the combined effect of all increments;
             incrementTotalScore(scorePerItem);
+            if (onUpdateStatus){
+                onUpdateStatus();
+            }
             return newScore;
         })
     }

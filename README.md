@@ -52,3 +52,25 @@ npm i --save react-select
 #### Reduce
 
 - A powerful tool in Javascript for transforming arrays into single values or objects
+
+#### Date
+
+- Date().toString() => Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)
+- Date().toISOString() => 2011-10-05T14:48:00.000Z
+
+#### Understanding the Data Flow
+
+- Frontend to Backend Data Flow:
+
+1. When you send data from the frontend using "axios.post", the data is sent as a JSON object in the request body
+2. This JSON object should match the structure that your backend controller expects
+
+- Backend Controller
+
+1. The backend controller function destructures the properties from the request body using "const { varA, varB } =req.body"
+2. These property names ( varA and varB) must match the keys used in the JSON object you send from the frontend
+
+- Consistency
+
+1. If you change the names of the properties in the request body on the frontend, you also need to update the destructuring in your backend controller to match these new names.
+2. Similarly, if you change the desctruing names in the controller, you need to ensure that the frontend sends the data using these new names

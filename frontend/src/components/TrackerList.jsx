@@ -13,9 +13,24 @@ const TrackerList = ({ title, port_url }) => {
     status:1
   })
 
+  //Calculate for the total score
   const [totalScore, setTotalScore] = useState(0);
   const incrementTotalScore = (scorePerItem) => {
     setTotalScore(prevScore => prevScore + scorePerItem);
+  }
+
+  //Update the total score into the calendar db
+  const [currentDate, setCurrentDate] = useState(new Date().toISOString().split("T")[0]);
+  const handleUpdateStatus = async () => {
+    console.log("Status updated")
+    try {
+      await axios.post(`${port_url}/api/calendar/updateScore`, {
+        date:currentDate,
+        score:totalScore
+      });
+    } catch (error) {
+      console.log("Failed to update the total score: ", error);
+    }
   }
 
   const onChangeHandler = (event) => {
@@ -104,6 +119,7 @@ const TrackerList = ({ title, port_url }) => {
                     <IncrementCountBtn 
                       scorePerItem={item.score} 
                       incrementTotalScore={incrementTotalScore}
+                      onUpdateStatus = {handleUpdateStatus}
                     />
                     <p>{item.task}</p>
                   </div>

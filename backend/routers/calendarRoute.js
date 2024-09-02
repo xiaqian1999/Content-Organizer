@@ -4,6 +4,6 @@ import { getDailyScores, updateDailyScore } from '../controllers/calendarControl
 const calendarRouter = express.Router();
 
 calendarRouter.get('/getScores', getDailyScores);
-calendarRouter.post('/udpateScore', updateDailyScore);
+calendarRouter.post('/updateScore', updateDailyScore);
 
 export default calendarRouter
