@@ -14,13 +14,8 @@ const TrackerList = ({ title, port_url }) => {
   })
 
   const [totalScore, setTotalScore] = useState(0);
-  const [clickItemId, setClickItemId] = useState(null);
   const incrementTotalScore = (scorePerItem) => {
     setTotalScore(prevScore => prevScore + scorePerItem);
-  }
-
-  const handleTaskButtonClick = (taskId) => {
-    setClickItemId(taskId);
   }
 
   const onChangeHandler = (event) => {
@@ -109,9 +104,8 @@ const TrackerList = ({ title, port_url }) => {
                     <IncrementCountBtn 
                       scorePerItem={item.score} 
                       incrementTotalScore={incrementTotalScore}
-                      onClick={() => handleTaskButtonClick(item._id)}
                     />
-                    <p className={clickItemId === item._id ? 'line-through' : ''}>{item.task}</p>
+                    <p>{item.task}</p>
                   </div>
                   <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} tracker_list={title} />
                 </div>
