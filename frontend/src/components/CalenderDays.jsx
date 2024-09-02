@@ -10,7 +10,9 @@ const CalenderDays = ({currentDay, changeCurrentDay, url}) => {
     const fetchScores = async () => {
         try {
             const response = await axios.get(`${url}/api/calendar/getScores`);
-            const scores = response.data.reduce((acc, item) => {
+            const scores = response.data.data.reduce((acc, item) => {
+                //reduce convert an array of calendar data into an object where each date is a key, and its associated score is the value
+                //acc[Date] = score => ex: Sun Sep 01 2024 = score 0
                 acc[new Date(item.date).toDateString()] = item.daily_total_score;
                 return acc;
             }, {});

@@ -13,6 +13,16 @@ const TrackerList = ({ title, port_url }) => {
     status:1
   })
 
+  const [totalScore, setTotalScore] = useState(0);
+  const [clickItemId, setClickItemId] = useState(null);
+  const incrementTotalScore = (scorePerItem) => {
+    setTotalScore(prevScore => prevScore + scorePerItem);
+  }
+
+  const handleTaskButtonClick = (taskId) => {
+    setClickItemId(taskId);
+  }
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -96,8 +106,12 @@ const TrackerList = ({ title, port_url }) => {
                 <div className='my-2 flex flex-nowrap justify-between' key={index}>
                   <div className='flex flex-row'>
                     {/* <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} /> */}
-                    <IncrementCountBtn />
-                    <p>{item.task}</p>
+                    <IncrementCountBtn 
+                      scorePerItem={item.score} 
+                      incrementTotalScore={incrementTotalScore}
+                      onClick={() => handleTaskButtonClick(item._id)}
+                    />
+                    <p className={clickItemId === item._id ? 'line-through' : ''}>{item.task}</p>
                   </div>
                   <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} tracker_list={title} />
                 </div>
@@ -107,7 +121,7 @@ const TrackerList = ({ title, port_url }) => {
             <hr />
             <div className='flex flex-nowrap justify-between'>
               <p>Total Count for Today:</p>
-              <span></span>
+              <span>{totalScore}</span>
             </div>
             
           </div>
