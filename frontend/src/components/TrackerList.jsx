@@ -6,32 +6,13 @@ import RemoveItemBtn from './removeItemBtn';
 
 const TrackerList = ({ title, port_url }) => {
   const [list, setList] = useState([]);
+  const [totalScore, setTotalScore] = useState(0);
   const [data, setData] = useState({
     task: "",
     tracker_type: "",
     score: 1,
     status:1
   })
-
-  //Calculate for the total score
-  const [totalScore, setTotalScore] = useState(0);
-  const incrementTotalScore = (scorePerItem) => {
-    setTotalScore(prevScore => prevScore + scorePerItem);
-  }
-
-  //Update the total score into the calendar db
-  const [currentDate, setCurrentDate] = useState(new Date().toISOString().split("T")[0]);
-  const handleUpdateStatus = async () => {
-    console.log("Status updated")
-    try {
-      await axios.post(`${port_url}/api/calendar/updateScore`, {
-        date:currentDate,
-        score:totalScore
-      });
-    } catch (error) {
-      console.log("Failed to update the total score: ", error);
-    }
-  }
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -85,7 +66,7 @@ const TrackerList = ({ title, port_url }) => {
 
   useEffect(() => {
     fetchList();
-  })
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(()=>{
@@ -118,8 +99,9 @@ const TrackerList = ({ title, port_url }) => {
                     {/* <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} /> */}
                     <IncrementCountBtn 
                       scorePerItem={item.score} 
-                      incrementTotalScore={incrementTotalScore}
-                      onUpdateStatus = {handleUpdateStatus}
+                      url={port_url}
+                      totalScore={totalScore}
+                      setTotalScore={setTotalScore}
                     />
                     <p>{item.task}</p>
                   </div>
