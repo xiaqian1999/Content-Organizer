@@ -76,7 +76,11 @@ const TrackerList = ({ title, port_url }) => {
   const annualTracker = activeTrackerItem.filter(item => item.tracker_type == "annual");
 
   useEffect(() => {
+    //All the fetching if want to have auto reflect then should not use []
     fetchList();
+  })
+
+  useEffect(() => {
     const storedTotalScore = parseInt(localStorage.getItem('totalScore'));
     if (storedTotalScore){
       setTotalScore(storedTotalScore);

@@ -24,7 +24,7 @@ const CalenderDays = ({currentDay, changeCurrentDay, url}) => {
 
     useEffect(() => {
         fetchScores();
-    },[])
+    })
 
     //adjust firstDayOfMonth to the start of the calendar grid if the first day of the month doesn't start on Sunday
     if (weekdayOfFirstDay !== 0){
