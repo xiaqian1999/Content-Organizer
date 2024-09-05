@@ -66,9 +66,7 @@ const TrackerList = ({ title, port_url }) => {
       console.log("run every midnight to clear the localStorage totalScore Count")
       localStorage.removeItem('totalScore');
       setTotalScore(0);
-    },
-    null, // onComplete
-	  true, // job.start() is optional here because of the fourth parameter set to true.
+    }
   )
 
   const activeTrackerItem = list.filter(item => item.status==1);
@@ -85,6 +83,7 @@ const TrackerList = ({ title, port_url }) => {
     if (storedTotalScore){
       setTotalScore(storedTotalScore);
     }
+    job.start();
   }, [])
 
   // This use to call a function for every x second 
