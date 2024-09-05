@@ -50,11 +50,15 @@ const CalenderDays = ({currentDay, changeCurrentDay, url}) => {
             {currentDays.map((day, index) => {
                 return (
                     <div key={index} 
-                        className={"relative border-l border-b w-auto" + (day.currentMonth ? " calender-current" : "") + (day.selected ? " calender-selected" : "")} onClick={()=>changeCurrentDay(day)} 
+                        className={"relative flex flex-col border-l border-b w-auto" + (day.currentMonth ? " calender-current" : "") + (day.selected ? " calender-selected" : "")} onClick={()=>changeCurrentDay(day)} 
                         style={{height:"85px"}}
                         >
-                        <p className='absolute' style={{right:"10px", color:"#a6a6a6"}}>{day.number}</p>
-                        <p className='absolute' style={{right:"10px", top:"20px", color:"#a6a6a6"}}>{day.score}</p>
+                        <p className='calendar-day text-right mr-2 text-gray-400'>{day.number}</p>
+                        <div className='flex flex-nowrap text-sm mx-2'>
+                            <span className='h-2 w-2 rounded-full bg-green-600 self-center mr-1'></span>
+                            <p className=''>point: </p>
+                            <p className='font-bold '>{day.score}</p>
+                        </div>
                     </div>
                 )
             })}

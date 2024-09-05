@@ -43,10 +43,10 @@ html, body{
 }
 
 /* Calendar related */
-.calender-current p{
-  color: #000;
+.calender-current .calendar-day{
+  color: #3d3d3d;
 }
-.calender-selected p{
+.calender-selected .calendar-day{
   color: #cc0000 !important;
   font-weight: bold;
 }

@@ -103,7 +103,7 @@ const TrackerList = ({ title, port_url }) => {
         <p className='font-bold text-[20px] self-center ml-2'>{title} Tracker</p>
         <form className='flex flex-nowrap justify-between my-2 w-full' onSubmit={onSubmitHanlder}>
           <input onChange={onChangeHandler} name="task" value={data.task} type="text" className='flex-1 w-4/6 border border-gray-400 p-2 rounded mx-1' />
-          <input type="number" onChange={onChangeHandler} name="score" value={data.score} className='w-1/6 border border-gray-400 p-2 rounded' />
+          {title === "Daily" ? <input type="number" onChange={onChangeHandler} name="score" value={data.score} className='w-1/6 border border-gray-400 p-2 rounded' /> : <></>}
           <button type="submit" className='w-1/6 text-white bg-gray-600 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded mx-1'>Add</button>
         </form>
 
@@ -114,7 +114,6 @@ const TrackerList = ({ title, port_url }) => {
               return(
                 <div className='my-2 flex flex-nowrap justify-between' key={index}>
                   <div className='flex flex-row'>
-                    {/* <UpdateStatusBtn listItem_id={item._id} url={port_url} tracker_type={title} /> */}
                     <IncrementCountBtn 
                       scorePerItem={item.score} 
                       url={port_url}
