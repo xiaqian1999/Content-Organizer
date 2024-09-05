@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import UpdateStatusBtn from './UpdateStatusBtn';
 import IncrementCountBtn from './IncrementCountBtn';
 import RemoveItemBtn from './removeItemBtn';
+import {CronJob} from 'cron';
+
 
 const TrackerList = ({ title, port_url }) => {
   const [list, setList] = useState([]);
@@ -58,27 +60,39 @@ const TrackerList = ({ title, port_url }) => {
       console.log(error)
     }
   }
+  
+  const job = new CronJob('00 00 00 * * *', 
+    function () {
+      console.log("run every midnight to clear the localStorage totalScore Count")
+      localStorage.removeItem('totalScore');
+      setTotalScore(0);
+    },
+    null, // onComplete
+	  true, // job.start() is optional here because of the fourth parameter set to true.
+  )
 
   const activeTrackerItem = list.filter(item => item.status==1);
   const dailyTracker = activeTrackerItem.filter(item => item.tracker_type == "daily");
   const annualTracker = activeTrackerItem.filter(item => item.tracker_type == "annual");
-  const MINUTE_MS = 10000;
 
   useEffect(() => {
     fetchList();
+    const storedTotalScore = parseInt(localStorage.getItem('totalScore'));
+    if (storedTotalScore){
+      setTotalScore(storedTotalScore);
+    }
   }, [])
 
-  useEffect(() => {
-    const interval = setInterval(()=>{
-      // setData({
-      //   task: "",
-      //   tracker_type: "",
-      //   status:1
-      // })
-    }, MINUTE_MS);
-    // This represents the unmount function, in which you need to clear your interval to prevent memory leaks
-    return () => clearInterval(interval);
-  }, [])
+  // This use to call a function for every x second 
+  // const MINUTE_MS = 10000;
+  // useEffect(() => {
+  //   const interval = setInterval(()=>{
+  //     localStorage.removeItem('totalScore');
+  //     setTotalScore(0);
+  //   }, MINUTE_MS);
+  //   // This represents the unmount function, in which you need to clear your interval to prevent memory leaks
+  //   return () => clearInterval(interval);
+  // }, [])
 
   return (
     <div className='border border-gray-200 flex flex-auto flex-col rounded p-4 bg-white'>

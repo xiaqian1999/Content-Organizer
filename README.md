@@ -31,6 +31,7 @@ npm i --save react-select
 #### localStorage & sessionStorage
 
 - Both are part of the Web Storage API, which allows web applications to store data in the browser
+- Important: localStorage trats everything as string, need to parseIne its value before using it as an integer.
 - Similarity between both
   - Data scoped to the origin (protocole, domain and port) of the page
   - Different origins can't access each other's localStorage
@@ -74,3 +75,24 @@ npm i --save react-select
 
 1. If you change the names of the properties in the request body on the frontend, you also need to update the destructuring in your backend controller to match these new names.
 2. Similarly, if you change the desctruing names in the controller, you need to ensure that the frontend sends the data using these new names
+
+#### [Cronitor Dependencies](https://crontab.guru/examples.html)
+
+- This allows you to write a schedule expression, that can call a function to run once a day, every friday etc.
+
+#### [Cron for Node.js](https://www.npmjs.com/package/cron#-basic-usage)
+
+- Installation: npm install cron
+- import { CronJob } from 'cron';
+- const job = new CronJob('\* \* \* \* \* \*', function(){//function here});
+
+---
+
+┬ ┬ ┬ ┬ ┬ ┬
+│ │ │ │ │ |
+│ │ │ │ │ └ day of week (0 - 7) (0 or 7 is Sun)
+│ │ │ │ └───── month (1 - 12)
+│ │ │ └────────── day of month (1 - 31)
+│ │ └─────────────── hour (0 - 23)
+│ └──────────────────── minute (0 - 59)
+└───────────────────────── second (0 - 59, OPTIONAL)

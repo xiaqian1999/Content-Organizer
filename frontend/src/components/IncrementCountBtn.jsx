@@ -9,26 +9,26 @@ const IncrementCountBtn = ({scorePerItem, url, totalScore, setTotalScore}) => {
             const newScore = prevScore+1;
             //This called here is to ensure that the total count is updated every time the local score increase
             //This way the total count in the Tracker reflects the combined effect of all increments;
-            // incrementTotalScore(scorePerItem);
+            setTotalScore(prevScore => prevScore + scorePerItem);
+            if (incrementScoreHandler){
+                incrementScoreHandler(scorePerItem);
+            }
             return newScore;
         });
-        if (incrementScoreHandler){
-            incrementScoreHandler(scorePerItem);
-        }
     }
 
     //Update the total score into the calendar db
     const currentDate= new Date().toISOString().split("T")[0];
     const incrementScoreHandler = async (scorePerItem) => {
         console.log("Status updated")
-        setTotalScore(prevScore => prevScore + scorePerItem);
         try {
-        await axios.post(`${url}/api/calendar/updateScore`, {
-            date:currentDate,
-            score:totalScore
-        });
+            await axios.post(`${url}/api/calendar/updateScore`, {
+                date:currentDate,
+                score:totalScore+scorePerItem
+            });
+            localStorage.setItem("totalScore", totalScore+scorePerItem)
         } catch (error) {
-        console.log("Failed to update the total score: ", error);
+            console.log("Failed to update the total score: ", error);
         }
     }
 
