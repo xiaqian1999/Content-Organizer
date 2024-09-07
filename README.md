@@ -46,9 +46,19 @@ npm i --save react-select
 
 #### useEffect
 
+npm
+
 - Used to handle operations like data fetching, subscription, or manually changing the DOM
 
 #### [React Calendar reference](https://derrickotte.medium.com/how-to-create-a-calendar-from-scratch-in-react-1f2db197454d)
+
+#### [React DnD Drag and Drop](https://react-dnd.github.io/react-dnd/about)
+
+#### [Pragmatic Drag and Drop](https://atlassian.design/components/pragmatic-drag-and-drop/comparison)
+
+- [Example](https://codesandbox.io/p/sandbox/xc598s?file=%2Fpragmatic-drag-and-drop%2Fdocumentation%2Fexamples%2Fpieces%2Fboard%2Fcard.tsx%3A280%2C47)
+
+#### [React Beautiful dnd](https://github.com/atlassian/react-beautiful-dnd?tab=readme-ov-file)
 
 #### Reduce
 

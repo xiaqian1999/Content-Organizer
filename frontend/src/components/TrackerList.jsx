@@ -121,7 +121,7 @@ const TrackerList = ({ title, port_url }) => {
                     />
                     <p>{item.task}</p>
                   </div>
-                  <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} tracker_list={title} />
+                  {/* <RemoveItemBtn url={port_url} item_id={item._id} fetchList={fetchList} tracker_list={title} /> */}
                 </div>
                 )
               })}

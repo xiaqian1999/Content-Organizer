@@ -15,6 +15,9 @@ const Sidebar = () => {
             <NavLink to={"/listjob"} className="flex items-center gap-4 py-5 px-3 rounded-l-md cursor-pointer">
                 <p className='hidden sm:block'>List Job</p>
             </NavLink>
+            <NavLink to={"/jobtracker"} className="flex items-center gap-4 py-5 px-3 rounded-l-md cursor-pointer">
+                <p className='hidden sm:block'>Job Tracker</p>
+            </NavLink>
         </div>
     </div>
   )
