@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Column from '../components/Column';
-import {DragDropContext} from '@hello-pangea/dnd';
+import {DragDropContext, Draggable} from '@hello-pangea/dnd';
 
 const JobTracker = () => {
     const initialData = {
@@ -20,10 +20,56 @@ const JobTracker = () => {
         columnOrder: ['column-1']
     }
 
+    const result = {
+        draggableId: 'task-1',
+        type: 'TYPE',
+        reason: 'DROP',
+        source: {
+            droppableId: 'column-1',
+            index: 0,
+        },
+        destination: {
+            droppableId: 'column-1',
+            index: 1,
+        }
+    }
+
     const [state, setState] = useState(initialData);
 
-    const onDragEnd = result => {
+    const onDragEnd = (result) => {
+        const {destination, source, draggableId} = result;
+        if(!destination){
+            return;
+        }
 
+        if(
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index
+        ){
+            return;
+        }
+
+        const column = state.columns[source.droppableId];
+        const newTaskIds = Array.from(column.taskIds);
+        // from this index, we want to remove 1 item
+        newTaskIds.splice(source.index, 1);
+        // move nothing but insert draggableId
+        newTaskIds.splice(destination.index,0,draggableId)
+
+        const newColumn = {
+            ...column,
+            taskIds: newTaskIds,
+        };
+
+        const newState = {
+            ...state,
+            columns: {
+                ...state.columns,
+                [newColumn.id]: newColumn,
+            }
+        }
+
+        setState(newState);
     }
     return (
         <DragDropContext onDragEnd={onDragEnd}>
