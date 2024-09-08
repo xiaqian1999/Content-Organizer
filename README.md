@@ -60,6 +60,12 @@ npm
 
 #### [React Beautiful dnd](https://github.com/atlassian/react-beautiful-dnd?tab=readme-ov-file)
 
+- Warning: but this is outdated with the old version of react-redux, will cause some issue
+
+#### [React Beautiful dnd](https://github.com/hello-pangea/dnd)
+
+- Fork of React Beautiful dnd with exact same functionality of the latest version and up-to-date dependencies
+
 #### Reduce
 
 - A powerful tool in Javascript for transforming arrays into single values or objects
