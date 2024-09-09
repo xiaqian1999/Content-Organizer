@@ -15,13 +15,12 @@ const Task = ({task, index}) => {
                 // const backgroundColor = snapshot.isDragging ? 'bg-green-200' : 'bg-white';
                 return (
                     <div {...provided.draggableProps}
+                    {...provided.dragHandleProps}
                     ref = {provided.innerRef}
                     // isDragging={snapshot.isDragging}
                     // We dont use the above line due to that tailwind css doesn't support dynamic css properties
                     // Need to handle dynamic class names within the component logic
-                    className={`flex border border-black rounded-md p-2 mb-2 ${snapshot.isDragging ? 'bg-green-200' : 'bg-white'}`}>
-                    <div {...provided.dragHandleProps}
-                        className='w-5 h-5 bg-orange-400 rounded-sm mr-2'></div>
+                    className={`border border-black rounded-md p-2 mb-2 ${snapshot.isDragging ? 'bg-green-200' : 'bg-white'}`}>
                     {task.content}
                 </div>
                 )

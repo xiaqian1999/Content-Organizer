@@ -15,9 +15,19 @@ const JobTracker = () => {
                 id: 'column-1',
                 title: 'To do',
                 taskIds: ['task-1','task-2','task-3','task-4'],
+            },
+            'column-2': {
+                id: 'column-2',
+                title: 'In Progress',
+                taskIds: [],
+            },
+            'column-3': {
+                id: 'column-3',
+                title: 'Done',
+                taskIds: [],
             }
         },
-        columnOrder: ['column-1']
+        columnOrder: ['column-1', 'column-2', 'column-3']
     }
 
     const start = {
@@ -98,13 +108,15 @@ const JobTracker = () => {
             onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
         >
-            {state.columnOrder.map(columnId => {
-                const column = state.columns[columnId];
-                const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
-                // console.log(tasks);
+            <div className='flex'>
+                {state.columnOrder.map(columnId => {
+                    const column = state.columns[columnId];
+                    const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
+                    // console.log(tasks);
 
-                return <Column key={column.id} column={column} tasks={tasks} />;
-            })}
+                    return <Column key={column.id} column={column} tasks={tasks} />;
+                })}
+            </div>
         </DragDropContext>
     )
 }
