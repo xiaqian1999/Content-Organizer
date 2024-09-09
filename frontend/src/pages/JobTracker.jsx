@@ -79,24 +79,56 @@ const JobTracker = () => {
         ){
             return;
         }
+        //previous use source.droppableId to move within one column
+        // const column = state.columns[source.droppableId];
 
-        const column = state.columns[source.droppableId];
-        const newTaskIds = Array.from(column.taskIds);
-        // from this index, we want to remove 1 item
-        newTaskIds.splice(source.index, 1);
-        // move nothing but insert draggableId
-        newTaskIds.splice(destination.index,0,draggableId)
+        //after we need to check if the start column and finish column is the same when dragging the tasks
+        const start = state.columns[source.droppableId];
+        const finish = state.columns[destination.droppableId];
+        if(start == finish) {
+            const newTaskIds = Array.from(start.taskIds);
+            // from this index, we want to remove 1 item
+            newTaskIds.splice(source.index, 1);
+            // move nothing but insert draggableId
+            newTaskIds.splice(destination.index,0,draggableId)
 
-        const newColumn = {
-            ...column,
-            taskIds: newTaskIds,
+            const newColumn = {
+                ...start,
+                taskIds: newTaskIds,
+            };
+
+            const newState = {
+                ...state,
+                columns: {
+                    ...state.columns,
+                    [newColumn.id]: newColumn,
+                }
+            }
+            setState(newState);
+            return;
+        }
+
+        // Moving from one list to another
+        const startTaskIds = Array.from(start.taskIds);
+        startTaskIds.splice(source.index, 1);
+        const newStart = {
+            ...start,
+            taskIds: startTaskIds,
         };
+
+        const finishTaskIds = Array.from(finish.taskIds);
+        finishTaskIds.splice(destination.index, 0, draggableId);
+        const newFinish = {
+            ...finish,
+            taskIds: finishTaskIds,
+        }
 
         const newState = {
             ...state,
             columns: {
                 ...state.columns,
-                [newColumn.id]: newColumn,
+                [newStart.id]: newStart,
+                [newFinish.id]: newFinish,
             }
         }
 
