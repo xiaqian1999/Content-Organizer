@@ -20,23 +20,44 @@ const JobTracker = () => {
         columnOrder: ['column-1']
     }
 
-    const result = {
+    const start = {
         draggableId: 'task-1',
         type: 'TYPE',
-        reason: 'DROP',
         source: {
             droppableId: 'column-1',
             index: 0,
         },
+    };
+    
+    const update = {
+        ...start,
         destination: {
             droppableId: 'column-1',
             index: 1,
-        }
-    }
+        },
+    };
+
+    const result = {
+        ...update,
+        reason: 'DROP',
+    };
 
     const [state, setState] = useState(initialData);
 
+    const onDragStart = (start) => {
+        document.body.style.color = 'orange';
+        document.body.style.transition = 'background-color 0.2s ease'
+    }
+
+    const onDragUpdate = (update) => {
+        const {destination} = update;
+        const opacity = destination ? destination.index / Object.keys(state.tasks).length : 0;
+        document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
+    }
+
     const onDragEnd = (result) => {
+        document.body.style.color = 'inherit';
+        document.body.style.backgroundColor = 'inherit';
         const {destination, source, draggableId} = result;
         if(!destination){
             return;
@@ -72,7 +93,11 @@ const JobTracker = () => {
         setState(newState);
     }
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
+        <DragDropContext 
+            onDragStart={onDragStart}
+            onDragUpdate={onDragUpdate}
+            onDragEnd={onDragEnd}
+        >
             {state.columnOrder.map(columnId => {
                 const column = state.columns[columnId];
                 const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
