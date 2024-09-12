@@ -11,6 +11,7 @@ const AddJob = ({url, setShowAddJob}) => {
   const [optionalSkills, setOptionalSkills] = useState([]);
 
   const [data, setData] = useState({
+    company_name: "",
     title: "",
     application_url: "",
     required_skill: "",
@@ -19,7 +20,8 @@ const AddJob = ({url, setShowAddJob}) => {
     year_of_experience: "",
     locations: "",
     additional_note: "",
-    rate_interest: 0
+    rate_interest: 0,
+    application_status: "new"
   })
 
   const onChangeHandler = (event) => {
@@ -39,6 +41,7 @@ const AddJob = ({url, setShowAddJob}) => {
     //In this case we don't use FormData, where the data is send as "multipart/form-data", it's different from JSON
     //Therefore only need to change here for the postData, no backend change needed
     const postData = {
+      company_name: data.company_name,
       title: data.title,
       application_url: data.application_url,
       required_skill: uniqueRequiredSkills,
@@ -47,7 +50,8 @@ const AddJob = ({url, setShowAddJob}) => {
       year_of_experience: data.year_of_experience,
       locations: data.locations,
       additional_note: data.additional_note,
-      rate_interest: data.rate_interest
+      rate_interest: data.rate_interest,
+      application_status: "new"
     }
 
     try {
@@ -60,6 +64,7 @@ const AddJob = ({url, setShowAddJob}) => {
       if (response.data.success){
           // if success, reset the form
           setData({
+            company_name: "",
             title: "",
             application_url: "",
             required_skill: [],
@@ -68,7 +73,8 @@ const AddJob = ({url, setShowAddJob}) => {
             year_of_experience: "",
             locations: "",
             additional_note: "",
-            rate_interest: 0
+            rate_interest: 0,
+            application_status: "new"
           })
           toast.success(response.data.message);
           setShowAddJob(false)
@@ -86,6 +92,11 @@ const AddJob = ({url, setShowAddJob}) => {
       <form className='flex flex-col place-self-center bg-white p-5 rounded' onSubmit={onSubmitHandler}>
         <div className='text-[25px] font-bold'>Add Job</div>
         <hr className='w-full my-2'/>
+
+        <div className='flex flex-col mb-4'>
+          <p className=''>Company Name*</p>
+          <input onChange={onChangeHandler} value={data.company_name} type="text" name="company_name" className='p-2 border border-gray-400 rounded' required/>
+        </div>
 
         <div className='flex flex-col mb-4'>
           <p className=''>Title*</p>

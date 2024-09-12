@@ -69,6 +69,7 @@ const ListJob = ({url, setShowAddJob}) => {
             return <ListItems 
               key={index} 
               id={item._id} 
+              company_name={item.company_name} 
               title={item.title} 
               application_url={item.application_url} 
               required_skill={item.required_skill} 

@@ -3,7 +3,7 @@ import postModel from "../models/postModel.js";
 // Add post item function
 const addPost = async (req, res) => {
     try {
-        const { title, application_url, required_skill, optional_skill, salary_range, year_of_experience,locations, additional_note, rate_interest } = req.body;
+        const { company_name, title, application_url, required_skill, optional_skill, salary_range, year_of_experience,locations, additional_note, rate_interest, application_status } = req.body;
 
         if (!required_skill || !Array.isArray(required_skill)){
             return res.status(400).send({error: "Skills must be an array of strings"})
@@ -14,7 +14,7 @@ const addPost = async (req, res) => {
         const uniqueOptionalSkills = [...new Set(optional_skill)];
 
         const post = new postModel({
-            title, application_url, required_skill:uniqueRequiredSkills, optional_skill:uniqueOptionalSkills, salary_range, year_of_experience,locations, additional_note, rate_interest
+            company_name, title, application_url, required_skill:uniqueRequiredSkills, optional_skill:uniqueOptionalSkills, salary_range, year_of_experience,locations, additional_note, rate_interest, application_status
         })
 
         await post.save();
@@ -45,5 +45,7 @@ const removePost = async (req, res) => {
         res.json({success:false, message:"Error"})
     }
 }
+
+//Future will need to have a function call when user drag the job box from one column to next, need to update the application_status in the table.
 
 export {addPost, listPost, removePost}
