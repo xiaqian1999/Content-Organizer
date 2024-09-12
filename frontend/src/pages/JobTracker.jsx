@@ -12,21 +12,31 @@ const initialData = {
     columns: {
         'column-1': {
             id: 'column-1',
-            title: 'To do',
+            title: 'New',
             taskIds: ['task-1','task-2','task-3','task-4'],
         },
         'column-2': {
             id: 'column-2',
-            title: 'In Progress',
+            title: 'Applied',
             taskIds: [],
         },
         'column-3': {
             id: 'column-3',
-            title: 'Done',
+            title: 'Interview',
+            taskIds: [],
+        },
+        'column-4': {
+            id: 'column-4',
+            title: 'Offer',
+            taskIds: [],
+        },
+        'column-5': {
+            id: 'column-5',
+            title: 'Rejected',
             taskIds: [],
         }
     },
-    columnOrder: ['column-1', 'column-2', 'column-3']
+    columnOrder: ['column-1', 'column-2', 'column-3', 'column-4', 'column-5']
 }
 
 const JobTracker = () => {
@@ -139,7 +149,7 @@ const JobTracker = () => {
             onDragStart={onDragStart}
             onDragEnd={onDragEnd}
         >
-            <div className='flex'>
+            <div className='flex sidebar_css'>
                 {state.columnOrder.map((columnId, index) => {
                     const column = state.columns[columnId];
                     const tasks = column.taskIds.map(taskId => state.tasks[taskId]);

@@ -62,9 +62,10 @@ npm
 
 - Warning: but this is outdated with the old version of react-redux, will cause some issue
 
-#### [React Beautiful dnd](https://github.com/hello-pangea/dnd)
+#### [React Beautiful dnd most updated](https://github.com/hello-pangea/dnd)
 
 - Fork of React Beautiful dnd with exact same functionality of the latest version and up-to-date dependencies
+- [Video Tutorial](https://egghead.io/lessons/react-reorder-columns-with-react-beautiful-dnd)
 
 #### Reduce
 
