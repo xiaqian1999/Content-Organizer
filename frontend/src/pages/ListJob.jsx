@@ -47,7 +47,7 @@ const ListJob = ({url, setShowAddJob}) => {
   })
 
   return (
-    <div className='sidebar_css'>
+    <div className='sidebar_css bg-gray-100'>
       <div className='flex flex-wrap justify-between'>
         <p className='text-[30px] font-bold'>Open Job Positions</p>
         <button onClick={() => setShowAddJob(true)} className='bg-gray-500 text-white px-3 rounded hover:bg-gray-600'> + Add Job</button>
@@ -63,7 +63,7 @@ const ListJob = ({url, setShowAddJob}) => {
           />
           <button className='bg-gray-500 text-white px-2 rounded w-1/12 cursor-pointer hover:bg-gray-600'>Filter</button>
         </div>
-        <div className='mb-3 grid ss:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
+        <div className='mb-3 grid ss:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10'>
           {filteredList.length === 0 && <p className='text-gray-600'>No results found</p>}
           {filteredList.map((item, index) => {
             return <ListItems 

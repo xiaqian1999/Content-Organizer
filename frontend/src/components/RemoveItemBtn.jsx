@@ -23,7 +23,7 @@ const RemoveItemBtn = ({url, item_id, fetchList, tracker_list, jobpost_list}) =>
         { (tracker_list) ?
         <span onClick={() => removeItem(item_id)} className='text-center text-white rounded-full h-6 w-6 bg-red-400 hover:bg-red-500 cursor-pointer'>X</span>
         :
-        <button onClick={() => removeItem(item_id)} className='py-1 px-2 bg-red-400 hover:bg-red-500 text-white text-center cursor-pointer w-fit place-self-end mr-2 mb-2 rounded text-sm'>Remove</button>
+        <button onClick={() => removeItem(item_id)} className='py-1 px-2 bg-gray-400 hover:bg-gray-500 text-white text-center cursor-pointer w-fit place-self-end mr-2 mb-2 rounded text-sm'>X</button>
         }
       </>
   )
