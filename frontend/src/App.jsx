@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './pages/Dashboard'
 import UserLogin from './pages/UserLogin'
 import JobTracker from './pages/JobTracker'
+import Test from './pages/Test'
 
 const App = () => {
   const url = "http://localhost:4001";
@@ -42,8 +43,9 @@ const App = () => {
                 <Route path="/" element={<Dashboard url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
                 <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
                 <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
-                <Route path="/jobtracker" element={<JobTracker />} />
-                <Route path="*" element={<Navigate to="/" />} />
+                <Route path="/jobtracker" element={<JobTracker url={url} />} />
+                <Route path="/test" element={<Test url={url} />} />
+                <Route path="*" element={<Navigate to="/jobtracker" />} />
               </Routes>
             </div>
           </div>
