@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
-    company_name: {type: String, required:true},
+    company_name: {type: String, required:false},
     title: {type: String, required:true},
     application_url: {type: String, required:true},
     required_skill: {type: [String], required:true},

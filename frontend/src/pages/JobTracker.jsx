@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Column from '../components/Column';
+import TrackerColumn from '../components/TrackerColumn';
 import {DragDropContext, Draggable} from '@hello-pangea/dnd';
 
 const initialData = {
@@ -155,7 +155,7 @@ const JobTracker = () => {
                     const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
                     const isDropDisabled = index < homeIndex;
 
-                    return <Column key={column.id} column={column} tasks={tasks} isDropDisabled={isDropDisabled}  />;
+                    return <TrackerColumn key={column.id} column={column} tasks={tasks} isDropDisabled={isDropDisabled}  />;
                 })}
             </div>
         </DragDropContext>

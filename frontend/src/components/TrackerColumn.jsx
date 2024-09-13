@@ -1,8 +1,8 @@
 import React from 'react'
 import { Droppable } from '@hello-pangea/dnd';
-import Task from './Task';
+import TrackerItems from './TrackerItems';
 
-const Column = ({column, tasks, isDropDisabled}) => {
+const TrackerColumn = ({column, tasks, isDropDisabled}) => {
   return (
     <div className='bg-gray-200 rounded-md w-[250px] mx-2 flex flex-col h-screen'>
         <h2 className='text-center mt-2 text-gray-600 font-semibold'>{column.title}</h2>
@@ -18,7 +18,7 @@ const Column = ({column, tasks, isDropDisabled}) => {
                         style={{transition: 'background-color 0.2s ease', minHeight: '100px'}}
                     >
                         {tasks.map((task, index) => { 
-                            return (<Task key={task.id} task={task} index={index} />)
+                            return (<TrackerItems key={task.id} task={task} index={index} />)
                         })}
                         {provided.placeholder}
                     </div>
@@ -29,4 +29,4 @@ const Column = ({column, tasks, isDropDisabled}) => {
   )
 }
 
-export default Column
+export default TrackerColumn

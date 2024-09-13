@@ -113,3 +113,7 @@ npm
 │ │ └─────────────── hour (0 - 23)
 │ └──────────────────── minute (0 - 59)
 └───────────────────────── second (0 - 59, OPTIONAL)
+
+#### TIPs
+
+[Beautiful drag and drop update](https://www.reddit.com/r/react/comments/wczdlm/beautiful_drag_and_drop_with_backend/?rdt=55129)

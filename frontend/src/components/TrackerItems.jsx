@@ -1,7 +1,7 @@
 import React from 'react'
 import { Draggable } from '@hello-pangea/dnd';
 
-const Task = ({task, index}) => {
+const TrackerItems = ({task, index}) => {
     const draggableSnapShot = {
         isDragging: true,
         draggingOver: 'column-1',
@@ -32,4 +32,4 @@ const Task = ({task, index}) => {
     )
 }
 
-export default Task
+export default TrackerItems
