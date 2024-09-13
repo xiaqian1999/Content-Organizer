@@ -6,24 +6,34 @@ const transformData = (data) => {
     const jobs = {};
     const columns = {
       'column-1': {
-          id: 'column-1',
-          title: 'New',
-          jobIds: []
-      },
-      'column-2': {
-          id: 'column-2',
-          title: 'In Progress',
-          jobIds: []
-      },
-      'column-3': {
-          id: 'column-3',
-          title: 'Done',
-          jobIds: []
-      }
+            id: 'column-1',
+            title: 'New',
+            jobIds: [],
+        },
+        'column-2': {
+            id: 'column-2',
+            title: 'Applied',
+            jobIds: [],
+        },
+        'column-3': {
+            id: 'column-3',
+            title: 'Interview',
+            jobIds: [],
+        },
+        'column-4': {
+            id: 'column-4',
+            title: 'Offer',
+            jobIds: [],
+        },
+        'column-5': {
+            id: 'column-5',
+            title: 'Rejected',
+            jobIds: [],
+        }
     };
   
     data.forEach(job => {
-        jobs[job._id] = { id: job._id, title: job.title };
+        jobs[job._id] = { id: job._id, company_name: job.company_name, title: job.title };
         columns['column-1'].jobIds.push(job._id);
     });
   

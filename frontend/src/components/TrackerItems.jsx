@@ -19,9 +19,10 @@ const TrackerItems = ({job, index}) => {
                     // isDragging={snapshot.isDragging}
                     // We dont use the above line due to that tailwind css doesn't support dynamic css properties
                     // Need to handle dynamic class names within the component logic
-                    className={`bg-white rounded-md p-2 mb-2 ${snapshot.isDragging ? 'bg-green-200' : 'bg-white'}`}>
-                    {job.title}
-                </div>
+                    className={`bg-white rounded-md p-2 mb-2 border-l-4 border-lime-700 ${snapshot.isDragging ? 'bg-green-200' : 'bg-white'}`}>
+                        <h1 className='font-bold text-lg'>{job.company_name}</h1>
+                        <p>{job.title}</p>
+                    </div>
                 )
             }}
         </Draggable>

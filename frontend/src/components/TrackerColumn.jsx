@@ -68,7 +68,7 @@ const TrackerColumn = ({data}) => {
         >
             <div className='flex sidebar_css'>
                 {Object.entries(data.columns).map(([columnId, column]) => (
-                    <div className='bg-gray-200 rounded-md w-[250px] mx-2 flex flex-col h-screen'>
+                    <div className='bg-gray-200 rounded-md w-[250px] mx-2 flex flex-col'>
                         <h2 className='text-center mt-2 text-gray-600 font-semibold'>{column.title}</h2>
                         <Droppable key={columnId} droppableId={columnId} >
                             {(provided) =>{
