@@ -1,15 +1,11 @@
 import React from 'react'
 import { Draggable } from '@hello-pangea/dnd';
 
-const TrackerItems = ({task, index}) => {
-    const draggableSnapShot = {
-        isDragging: true,
-        draggingOver: 'column-1',
-    }
-
+const TrackerItems = ({job, index}) => {
     return (
         <Draggable 
-            draggableId={task.id} 
+            key={job._id}
+            draggableId={job.id} 
             index={index}
             >
             {/*snapshot - contains # of property to style draggable components during drag */}
@@ -24,7 +20,7 @@ const TrackerItems = ({task, index}) => {
                     // We dont use the above line due to that tailwind css doesn't support dynamic css properties
                     // Need to handle dynamic class names within the component logic
                     className={`bg-white rounded-md p-2 mb-2 ${snapshot.isDragging ? 'bg-green-200' : 'bg-white'}`}>
-                    {task.content}
+                    {job.title}
                 </div>
                 )
             }}
