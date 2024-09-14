@@ -33,7 +33,7 @@ const transformData = (data) => {
     };
   
     data.forEach(job => {
-        jobs[job._id] = { id: job._id, company_name: job.company_name, title: job.title };
+        jobs[job._id] = { id: job._id, company_name: job.company_name, title: job.title, salary: job.salary_range };
         columns['column-1'].jobIds.push(job._id);
     });
   
@@ -59,7 +59,7 @@ const JobTracker = ({url}) => {
     }, []);
 
     return (
-        <div>
+        <div className='w-full'>
             {data && (
                 <TrackerColumn data={data} setData={setData} />
             )}

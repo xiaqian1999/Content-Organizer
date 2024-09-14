@@ -5,7 +5,7 @@ import { assets } from '../assets/assets'
 const Sidebar = () => {
     const [active, setActive] = useState("dashboard")
     return (
-        <div className='font-semibold text-white bg-green-700 m-5 rounded-lg md:block xs:hidden' style={{height: '100vh', minWidth: '200px', maxWidth: '200px'}}>
+        <div className='font-semibold text-white bg-green-700 m-5 rounded-lg md:block xs:hidden' style={{height: '100vh'}}>
             <div>
                 <img src={assets.logo_white} alt="" />
             </div>

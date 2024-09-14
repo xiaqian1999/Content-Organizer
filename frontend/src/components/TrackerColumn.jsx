@@ -77,9 +77,9 @@ const TrackerColumn = ({data, setData}) => {
             onDragStart={onDragStart}
             onDragEnd={onDragEnd}
         >
-            <div className='flex sidebar_css'>
+            <div className='flex'>
                 {Object.entries(data.columns).map(([columnId, column]) => (
-                    <div className='bg-gray-200 rounded-md w-[250px] mx-2 flex flex-col'>
+                    <div className='bg-gray-200 rounded-md w-[300px] mx-2 flex flex-col'>
                         <h2 className='text-center mt-2 text-gray-600 font-semibold'>{column.title}</h2>
                         <Droppable key={columnId} droppableId={columnId} >
                             {(provided, snapshot) =>{
@@ -87,7 +87,7 @@ const TrackerColumn = ({data, setData}) => {
                                 return(
                                     <div ref={provided.innerRef}
                                         {...provided.droppableProps}
-                                        className={`${backgroundColor} p-2 flex-grow`}
+                                        className={`${backgroundColor} p-2 flex-grow overflow-y-auto`}
                                         style={{transition: 'background-color 0.2s ease', minHeight: '100px'}}
                                     >
                                         {column.jobIds.map((jobId, index) => {

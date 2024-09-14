@@ -1,6 +1,5 @@
 import React from 'react'
 import ToDoList from '../components/ToDoList'
-import Navbar from '../components/Navbar'
 import TrackerList from '../components/TrackerList'
 import ViewCalendar from './ViewCalendar'
 

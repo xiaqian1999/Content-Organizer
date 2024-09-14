@@ -76,7 +76,7 @@ const AddJob = ({url, setShowAddJob}) => {
             rate_interest: 0,
             application_status: "new"
           })
-          toast.success(response.data.message);
+          // toast.success(response.data.message);
           setShowAddJob(false)
         }else{
           console.log("ERROR: ", response.data.message);

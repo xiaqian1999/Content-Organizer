@@ -35,18 +35,24 @@ const App = () => {
       <ToastContainer />
       <>
         {isAuthenticated ? (
-          <div className="flex flex-nowrap bg-gray-50">
-            <Sidebar />
-            <div className='flex flex-col' style={{height: '100vh'}}>
-              <Navbar setAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />
-              <Routes>
-                <Route path="/" element={<Dashboard url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
-                <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
-                <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
-                <Route path="/jobtracker" element={<JobTracker url={url} />} />
-                <Route path="/test" element={<Test url={url} />} />
-                <Route path="*" element={<Navigate to="/jobtracker" />} />
-              </Routes>
+          <div className="md:grid md:grid-cols-5 grid-flow-row-dense bg-gray-50 h-screen">
+            <div className='md:col-span-1'>
+              <Sidebar />
+            </div>
+            <div className='md:col-span-4 grid grid-rows-6 grid-flow-row-dense gap-4 overflow-scroll h-screen'>
+              <div className='row-span-1'>
+                <Navbar setAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />
+              </div>
+              <div className='h-screen'>
+                <Routes>
+                  <Route path="/" element={<Dashboard url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
+                  <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
+                  <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
+                  <Route path="/jobtracker" element={<JobTracker url={url} />} />
+                  <Route path="/test" element={<Test url={url} />} />
+                  <Route path="*" element={<Navigate to="/jobtracker" />} />
+                </Routes>
+              </div>
             </div>
           </div>
         ):(
