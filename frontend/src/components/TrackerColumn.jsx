@@ -3,6 +3,11 @@ import TrackerItems from './TrackerItems';
 import {DragDropContext, Droppable} from '@hello-pangea/dnd';
 
 const TrackerColumn = ({data, setData}) => {
+
+    const onDragStart = () => {
+        //mostly for the frontend design when drag start
+    }
+
     const onDragEnd = (result) => {
         // Handle drag end event
         const { source, destination, draggableId } = result;
@@ -88,6 +93,7 @@ const TrackerColumn = ({data, setData}) => {
 
     return (
         <DragDropContext 
+            onDragStart={onDragStart}
             onDragEnd={onDragEnd}
         >
             <div className='flex sidebar_css'>
