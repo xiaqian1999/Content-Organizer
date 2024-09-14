@@ -61,7 +61,7 @@ const JobTracker = ({url}) => {
     return (
         <div>
             {data && (
-                <TrackerColumn data={data} />
+                <TrackerColumn data={data} setData={setData} />
             )}
         </div>
     );

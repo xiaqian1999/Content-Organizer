@@ -1,65 +1,89 @@
 import React, { useState } from 'react'
 import TrackerItems from './TrackerItems';
-import { Droppable } from '@hello-pangea/dnd';
-import {DragDropContext, Draggable} from '@hello-pangea/dnd';
+import {DragDropContext, Droppable} from '@hello-pangea/dnd';
 
-const TrackerColumn = ({data}) => {
+const TrackerColumn = ({data, setData}) => {
     const onDragEnd = (result) => {
         // Handle drag end event
         const { source, destination, draggableId } = result;
         if (!destination) return;
 
-        // Logic to handle moving tasks between columns
-        const startColumn = data.columns[source.droppableId];
-        const finishColumn = data.columns[destination.droppableId];
-
-        if (startColumn === finishColumn) {
-            // Task is in the same column
-            const newTaskIds = Array.from(startColumn.taskIds);
-            newTaskIds.splice(source.index, 1);
-            newTaskIds.splice(destination.index, 0, draggableId);
-
-            const newColumn = {
-                ...startColumn,
-                taskIds: newTaskIds
-            };
-
-            const newData = {
-                ...data,
-                columns: {
-                    ...data.columns,
-                    [newColumn.id]: newColumn
-                }
-            };
-
-            // Update the state or backend with newData
-        } else {
-            // Task is moved to a different column
-            const startTaskIds = Array.from(startColumn.taskIds);
-            startTaskIds.splice(source.index, 1);
-            const newStartColumn = {
-                ...startColumn,
-                taskIds: startTaskIds
-            };
-
-            const finishTaskIds = Array.from(finishColumn.taskIds);
-            finishTaskIds.splice(destination.index, 0, draggableId);
-            const newFinishColumn = {
-                ...finishColumn,
-                taskIds: finishTaskIds
-            };
-
-            const newData = {
-                ...data,
-                columns: {
-                    ...data.columns,
-                    [newStartColumn.id]: newStartColumn,
-                    [newFinishColumn.id]: newFinishColumn
-                }
-            };
-
-            // Update the state or backend with newData
+        if(destination.droppableId === source.droppableId && destination.index === source.index){
+            return;
         }
+
+        const column = data.columns[source.droppableId];
+        const newJobIds = Array.from(column.jobIds);
+        //from this index, we want to remove 1 item
+        newJobIds.splice(source.index, 1);
+        newJobIds.splice(destination.index, 0, draggableId);
+
+        const newColumn = {
+            ...column,
+            jobIds: newJobIds,
+        }
+
+        const newData = {
+            ...data,
+            columns: {
+                ...data.columns,
+                [newColumn.id]: newColumn,
+            },
+        };
+
+        setData(newData);
+
+        // Logic to handle moving tasks between columns
+        // const startColumn = data.columns[source.droppableId];
+        // const finishColumn = data.columns[destination.droppableId];
+        
+        // if (startColumn === finishColumn) {
+        //     // Task is in the same column
+        //     const newjobIds = Array.from(startColumn.jobIds);
+        //     newjobIds.splice(source.index, 1);
+        //     newjobIds.splice(destination.index, 0, draggableId);
+
+        //     const newColumn = {
+        //         ...startColumn,
+        //         jobIds: newjobIds
+        //     };
+
+        //     const newData = {
+        //         ...data,
+        //         columns: {
+        //             ...data.columns,
+        //             [newColumn.id]: newColumn
+        //         }
+        //     };
+
+        //     // Update the state or backend with newData
+        // } else {
+        //     // Task is moved to a different column
+        //     const startjobIds = Array.from(startColumn.jobIds);
+        //     startjobIds.splice(source.index, 1);
+        //     const newStartColumn = {
+        //         ...startColumn,
+        //         jobIds: startjobIds
+        //     };
+
+        //     const finishjobIds = Array.from(finishColumn.jobIds);
+        //     finishjobIds.splice(destination.index, 0, draggableId);
+        //     const newFinishColumn = {
+        //         ...finishColumn,
+        //         jobIds: finishjobIds
+        //     };
+
+        //     const newData = {
+        //         ...data,
+        //         columns: {
+        //             ...data.columns,
+        //             [newStartColumn.id]: newStartColumn,
+        //             [newFinishColumn.id]: newFinishColumn
+        //         }
+        //     };
+
+        //     // Update the state or backend with newData
+        // }
     };
 
     return (

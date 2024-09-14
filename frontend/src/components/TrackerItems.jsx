@@ -4,7 +4,7 @@ import { Draggable } from '@hello-pangea/dnd';
 const TrackerItems = ({job, index}) => {
     return (
         <Draggable 
-            key={job._id}
+            key={job.id}
             draggableId={job.id} 
             index={index}
             >
