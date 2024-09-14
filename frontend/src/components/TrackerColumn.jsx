@@ -16,79 +16,60 @@ const TrackerColumn = ({data, setData}) => {
         if(destination.droppableId === source.droppableId && destination.index === source.index){
             return;
         }
-
-        const column = data.columns[source.droppableId];
-        const newJobIds = Array.from(column.jobIds);
-        //from this index, we want to remove 1 item
-        newJobIds.splice(source.index, 1);
-        newJobIds.splice(destination.index, 0, draggableId);
-
-        const newColumn = {
-            ...column,
-            jobIds: newJobIds,
-        }
-
-        const newData = {
-            ...data,
-            columns: {
-                ...data.columns,
-                [newColumn.id]: newColumn,
-            },
-        };
-
-        setData(newData);
-
         // Logic to handle moving tasks between columns
-        // const startColumn = data.columns[source.droppableId];
-        // const finishColumn = data.columns[destination.droppableId];
+        const startColumn = data.columns[source.droppableId];
+        const finishColumn = data.columns[destination.droppableId];
         
-        // if (startColumn === finishColumn) {
-        //     // Task is in the same column
-        //     const newjobIds = Array.from(startColumn.jobIds);
-        //     newjobIds.splice(source.index, 1);
-        //     newjobIds.splice(destination.index, 0, draggableId);
+        if (startColumn === finishColumn) {
+            // Task is in the same column
+            const newJobIds = Array.from(startColumn.jobIds);
+            //from this index, we want to remove 1 item
+            newJobIds.splice(source.index, 1);
+            newJobIds.splice(destination.index, 0, draggableId);
 
-        //     const newColumn = {
-        //         ...startColumn,
-        //         jobIds: newjobIds
-        //     };
+            const newColumn = {
+                ...startColumn,
+                jobIds: newJobIds,
+            }
 
-        //     const newData = {
-        //         ...data,
-        //         columns: {
-        //             ...data.columns,
-        //             [newColumn.id]: newColumn
-        //         }
-        //     };
+            const newData = {
+                ...data,
+                columns: {
+                    ...data.columns,
+                    [newColumn.id]: newColumn,
+                },
+            };
 
-        //     // Update the state or backend with newData
-        // } else {
-        //     // Task is moved to a different column
-        //     const startjobIds = Array.from(startColumn.jobIds);
-        //     startjobIds.splice(source.index, 1);
-        //     const newStartColumn = {
-        //         ...startColumn,
-        //         jobIds: startjobIds
-        //     };
+            setData(newData);
+            return;
+        } else {
+            // Task is moved to a different column
+            const startJobIds = Array.from(startColumn.jobIds);
+            startJobIds.splice(source.index, 1);
+            const newStartColumn = {
+                ...startColumn,
+                jobIds: startJobIds
+            };
 
-        //     const finishjobIds = Array.from(finishColumn.jobIds);
-        //     finishjobIds.splice(destination.index, 0, draggableId);
-        //     const newFinishColumn = {
-        //         ...finishColumn,
-        //         jobIds: finishjobIds
-        //     };
+            const finishJobIds = Array.from(finishColumn.jobIds);
+            finishJobIds.splice(destination.index, 0, draggableId);
+            const newFinishColumn = {
+                ...finishColumn,
+                jobIds: finishJobIds
+            };
 
-        //     const newData = {
-        //         ...data,
-        //         columns: {
-        //             ...data.columns,
-        //             [newStartColumn.id]: newStartColumn,
-        //             [newFinishColumn.id]: newFinishColumn
-        //         }
-        //     };
-
-        //     // Update the state or backend with newData
-        // }
+            const newData = {
+                ...data,
+                columns: {
+                    ...data.columns,
+                    [newStartColumn.id]: newStartColumn,
+                    [newFinishColumn.id]: newFinishColumn
+                }
+            };
+            //Update with data or backend with newData
+            setData(newData);
+            return;
+        }
     };
 
     return (
