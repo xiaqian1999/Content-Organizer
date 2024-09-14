@@ -89,7 +89,7 @@ const AddJob = ({url, setShowAddJob}) => {
 
   return (
     <div className='text-gray-600 absolute z-1 w-full h-full grid' style={{backgroundColor: '#00000090'}}>
-      <form className='flex flex-col place-self-center bg-white p-5 rounded' onSubmit={onSubmitHandler}>
+      <form className='flex flex-col place-self-center bg-white p-5 rounded w-[550px]' onSubmit={onSubmitHandler}>
         <div className='text-[25px] font-bold'>Add Job</div>
         <hr className='w-full my-2'/>
 
