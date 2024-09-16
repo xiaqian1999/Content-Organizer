@@ -7,33 +7,38 @@ const transformData = (data) => {
     const columns = {
       'column-1': {
             id: 'column-1',
-            title: 'New',
+            colTitle: 'New',
+            applicationStatus: 'new',
             jobIds: [],
         },
         'column-2': {
             id: 'column-2',
-            title: 'Applied',
+            colTitle: 'Applied',
+            applicationStatus: 'applied',
             jobIds: [],
         },
         'column-3': {
             id: 'column-3',
-            title: 'Interview',
+            colTitle: 'Interview',
+            applicationStatus: 'interview',
             jobIds: [],
         },
         'column-4': {
             id: 'column-4',
-            title: 'Offer',
+            colTitle: 'Offer',
+            applicationStatus: 'offer',
             jobIds: [],
         },
         'column-5': {
             id: 'column-5',
-            title: 'Rejected',
+            colTitle: 'Rejected',
+            applicationStatus: 'rejected',
             jobIds: [],
         }
     };
   
     data.forEach(job => {
-        jobs[job._id] = { id: job._id, company_name: job.company_name, title: job.title, salary: job.salary_range };
+        jobs[job._id] = { id: job._id, company_name: job.company_name, title: job.title, salary: job.salary_range, application_status: job.application_status };
         columns['column-1'].jobIds.push(job._id);
     });
   
@@ -47,8 +52,15 @@ const JobTracker = ({url}) => {
         try {
             const response = await axios.get(`${url}/api/post/list`);
             const transformedData = transformData(response.data.data);
-            console.log(transformedData);
-            setData(transformedData);
+
+            //Optionally load persisted state form localStorage if needed, this is to avoid if there's a saved state in localStorage, we don't want it to override the fresh data fetched from the backend
+            const savedState = localStorage.getItem('drag-and-drop-state');
+            if(savedState){
+                const parsedData = JSON.parse(savedState);
+                setData(prevData => parsedData || transformedData);
+            }else{
+                setData(transformedData);
+            }
         } catch (error) {
             console.error(error);
         }
@@ -61,7 +73,7 @@ const JobTracker = ({url}) => {
     return (
         <div className='w-full'>
             {data && (
-                <TrackerColumn data={data} setData={setData} />
+                <TrackerColumn data={data} setData={setData} url={url} fetchList={fetchList} />
             )}
         </div>
     );

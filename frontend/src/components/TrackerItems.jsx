@@ -24,7 +24,7 @@ const TrackerItems = ({job, index}) => {
                             <p className='bg-green-800 text-white px-2 rounded-sm text-sm w-fit my-1'>{job.title}</p>
                             <p className='text-sm'>${job.salary}</p>
                         </div>
-                        <div className='flex justify-end'><button className='bg-gray-600 text-white px-2 rounded-sm text-sm w-fit cursor-pointer hover:bg-gray-900'>View</button></div>
+                        <div className='flex justify-end'><span className='bg-red-500 text-white px-2 rounded-full text-sm w-fit mx-2'>{job.application_status}</span><button className='bg-gray-600 text-white px-2 rounded-sm text-sm w-fit cursor-pointer hover:bg-gray-900'>View</button></div>
                     </div>
                 )
             }}

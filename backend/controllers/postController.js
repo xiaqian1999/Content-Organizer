@@ -46,6 +46,18 @@ const removePost = async (req, res) => {
     }
 }
 
+const updateApplicationStatus = async(req, res) => {
+    const { jobId, newStatus } = req.body;
+    console.log("Jobid, newStatus", req.body);
+    try {
+        const updatedStatus = await postModel.findByIdAndUpdate(jobId, {application_status: newStatus});
+        res.json(updatedStatus);
+    } catch (error) {
+        console.log(error)
+        res.json({success:false, message:"Failed to update the job application status."});
+    }
+}
+
 //Future will need to have a function call when user drag the job box from one column to next, need to update the application_status in the table.
 
-export {addPost, listPost, removePost}
+export {addPost, listPost, removePost, updateApplicationStatus}
