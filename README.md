@@ -1,6 +1,7 @@
 # Content-Organizer
 
 ## Purpose of the Web App
+![contentOrganizer-dashboard](https://github.com/user-attachments/assets/d67ebb18-9c59-4310-94ea-684bea48440b)
 
 ## Language use
 
