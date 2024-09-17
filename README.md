@@ -1,7 +1,14 @@
 # Content-Organizer
 
 ## Purpose of the Web App
+### User able to record their daily todo list and annual tracker list
 ![contentOrganizer-dashboard](https://github.com/user-attachments/assets/d67ebb18-9c59-4310-94ea-684bea48440b)
+
+### User able to add and organize a list of job they are looking for
+![contentOrganizer-listjob](https://github.com/user-attachments/assets/0cba5134-1c73-46db-9b0f-e5884f889b45)
+
+### User able to drag and drop to change the job application status through kanban board
+![contentOrganizer-jobtracker](https://github.com/user-attachments/assets/ca6959c5-fac1-49d3-874d-068dc85766b2)
 
 ## Language use
 
