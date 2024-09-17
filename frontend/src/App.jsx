@@ -50,7 +50,7 @@ const App = () => {
                   <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
                   <Route path="/jobtracker" element={<JobTracker url={url} />} />
                   <Route path="/test" element={<Test url={url} />} />
-                  <Route path="*" element={<Navigate to="/jobtracker" />} />
+                  <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
               </div>
             </div>

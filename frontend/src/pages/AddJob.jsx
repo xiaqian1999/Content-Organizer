@@ -88,19 +88,21 @@ const AddJob = ({url, setShowAddJob}) => {
   }
 
   return (
-    <div className='text-gray-600 absolute z-1 w-full h-full grid' style={{backgroundColor: '#00000090'}}>
+    <div className='text-gray-600 absolute z-1 w-full h-screen py-3 grid' style={{backgroundColor: '#00000090'}}>
       <form className='flex flex-col place-self-center bg-white p-5 rounded w-[550px]' onSubmit={onSubmitHandler}>
         <div className='text-[25px] font-bold'>Add Job</div>
         <hr className='w-full my-2'/>
 
-        <div className='flex flex-col mb-4'>
-          <p className=''>Company Name*</p>
-          <input onChange={onChangeHandler} value={data.company_name} type="text" name="company_name" className='p-2 border border-gray-400 rounded' required/>
-        </div>
+        <div className='flex flex-wrap justify-between my-2'>
+          <div className='flex flex-col mb-4' style={{width: "48%"}}>
+            <p className=''>Company Name*</p>
+            <input onChange={onChangeHandler} value={data.company_name} type="text" name="company_name" className='p-2 border border-gray-400 rounded' required/>
+          </div>
 
-        <div className='flex flex-col mb-4'>
-          <p className=''>Title*</p>
-          <input onChange={onChangeHandler} value={data.title} type="text" name="title" className='p-2 border border-gray-400 rounded' required/>
+          <div className='flex flex-col mb-4' style={{width: "48%"}}>
+            <p className=''>Title*</p>
+            <input onChange={onChangeHandler} value={data.title} type="text" name="title" className='p-2 border border-gray-400 rounded' required/>
+          </div>
         </div>
 
         <div className='flex flex-col mb-4'>
