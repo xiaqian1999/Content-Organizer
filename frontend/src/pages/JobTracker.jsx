@@ -43,7 +43,7 @@ const transformData = (data) => {
     });
   
     return { jobs, columns };
-  };
+};
 
 const JobTracker = ({url}) => {
     const [data, setData] = useState(null);
@@ -66,6 +66,11 @@ const JobTracker = ({url}) => {
         }
     };
 
+    const updateData = (newData) => {
+        setData(newData);
+        localStorage.setItem('drag-and-drop-state', JSON.stringify(newData));
+    };
+
     useEffect(() => {
         fetchList();
     }, []);
@@ -73,7 +78,7 @@ const JobTracker = ({url}) => {
     return (
         <div className='w-full'>
             {data && (
-                <TrackerColumn data={data} setData={setData} url={url} fetchList={fetchList} />
+                <TrackerColumn data={data} setData={updateData} url={url} fetchList={fetchList} />
             )}
         </div>
     );

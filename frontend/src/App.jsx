@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard'
 import UserLogin from './pages/UserLogin'
 import JobTracker from './pages/JobTracker'
 import Test from './pages/Test'
+import EventDashboard from './pages/EventDashboard'
 
 const App = () => {
   const url = "http://localhost:4001";
@@ -25,6 +26,10 @@ const App = () => {
       // optionally, vertify the token's validity here
       setToken(storedToken);
       setIsAuthenticated(true);
+      console.log('User is authenticated');
+    }else{
+      setIsAuthenticated(false);
+      console.log('User is not authenticated');
     }
   }, []);
 
@@ -49,6 +54,7 @@ const App = () => {
                   <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
                   <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
                   <Route path="/jobtracker" element={<JobTracker url={url} />} />
+                  <Route path="/events" element={<EventDashboard url={url} setShowAddJob={setShowAddJob} /> } />
                   <Route path="/test" element={<Test url={url} />} />
                   <Route path="*" element={<Navigate to="/" />} />
                 </Routes>

@@ -25,6 +25,11 @@ const Sidebar = () => {
                     className={`flex items-center gap-4 mb-2 px-3 rounded-l-md cursor-pointer}`}>
                     <p className={`hidden sm:block p-2 rounded-md w-full ${active==="jobtracker" ? "bg-green-800" : ""}`}>Job Tracker</p>
                 </NavLink>
+                <NavLink to={"/events"} 
+                    onClick={() => {setActive("events")}} 
+                    className={`flex items-center gap-4 mb-2 px-3 rounded-l-md cursor-pointer}`}>
+                    <p className={`hidden sm:block p-2 rounded-md w-full ${active==="events" ? "bg-green-800" : ""}`}>Events</p>
+                </NavLink>
                 <NavLink to={"/test"} 
                     onClick={() => {setActive("test")}} 
                     className={`flex items-center gap-4 mb-2 px-3 rounded-l-md cursor-pointer}`}>
