@@ -1,13 +1,14 @@
 import express from "express"
 import cors from "cors"
+import 'dotenv/config'
 import { connectDB } from "./config/db.js"
 import postRouter from "./routers/postRoute.js"
 import skillRouter from "./routers/skillRoute.js"
 import todolistRouter from "./routers/todolistRoute.js"
 import userRouter from "./routers/userRoute.js"
-import 'dotenv/config'
 import trackerlistRouter from "./routers/trackerRoute.js"
 import calendarRouter from "./routers/calendarRoute.js"
+import eventRouter from "./routers/eventRoute.js"
 
 // app config
 const app = express()
@@ -29,6 +30,7 @@ app.use("/api/todolist", todolistRouter)
 app.use("/api/user", userRouter)
 app.use("/api/trackerlist", trackerlistRouter)
 app.use("/api/calendar", calendarRouter)
+app.use("/api/events", eventRouter)
 
 // http method, liquid the data from server, like get(), post(), update(), delete()
 app.get("/", (req, res)=> {
