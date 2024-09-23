@@ -1,11 +1,11 @@
 import React from 'react'
 
-const EventDashboard = ({url, setShowAddJob}) => {
+const EventDashboard = ({url, setShowAddEvent}) => {
   return (
     <div className='sidebar_css bg-gray-100'>
         <div className='flex flex-wrap justify-between'>
             <p className='text-[30px] font-bold'>Events</p>
-            <button onClick={() => setShowAddJob(true)} className='bg-gray-500 text-white px-3 rounded hover:bg-gray-600'> + Add Event</button>
+            <button onClick={() => setShowAddEvent(true)} className='bg-gray-500 text-white px-3 rounded hover:bg-gray-600'> + Add Event</button>
         </div>
         <hr className='my-5'/>
         <div className='bg-white p-2 rounded-md'>

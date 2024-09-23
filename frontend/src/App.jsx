@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from './components/Navbar'
-import Sidebar from "./components/Sidebar"
-import { Routes, Route, Navigate } from 'react-router-dom'
-import AddJob from "./pages/AddJob"
-import ListJob from "./pages/ListJob"
-import ViewCalendar from "./pages/ViewCalendar"
+import React, { useEffect, useState } from 'react';
+import Navbar from './components/Navbar';
+import Sidebar from "./components/Sidebar";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import AddJob from "./pages/AddJob";
+import AddEvent from './components/AddEvent';
+import ListJob from "./pages/ListJob";
+import ViewCalendar from "./pages/ViewCalendar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Dashboard from './pages/Dashboard'
-import UserLogin from './pages/UserLogin'
-import JobTracker from './pages/JobTracker'
-import Test from './pages/Test'
-import EventDashboard from './pages/EventDashboard'
+import Dashboard from './pages/Dashboard';
+import UserLogin from './pages/UserLogin';
+import JobTracker from './pages/JobTracker';
+import Test from './pages/Test';
+import EventDashboard from './pages/EventDashboard';
 
 const App = () => {
   const url = "http://localhost:4001";
   const [showAddJob, setShowAddJob] = useState(false);
+  const [showAddEvent, setShowAddEvent] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
 
@@ -36,6 +38,7 @@ const App = () => {
   return (
     <>
     {showAddJob ? <AddJob url={url} setShowAddJob={setShowAddJob} /> : <></>}
+    {showAddEvent ? <AddEvent url={url} setShowAddEvent={setShowAddEvent} /> : <></>}
     <div>
       <ToastContainer />
       <>
@@ -51,10 +54,10 @@ const App = () => {
               <div className='h-screen'>
                 <Routes>
                   <Route path="/" element={<Dashboard url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
-                  <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} />
+                  {/* <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} /> */}
                   <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
                   <Route path="/jobtracker" element={<JobTracker url={url} />} />
-                  <Route path="/events" element={<EventDashboard url={url} setShowAddJob={setShowAddJob} /> } />
+                  <Route path="/events" element={<EventDashboard url={url} setShowAddEvent={setShowAddEvent} /> } />
                   <Route path="/test" element={<Test url={url} />} />
                   <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
