@@ -54,7 +54,6 @@ const App = () => {
               <div className='h-screen'>
                 <Routes>
                   <Route path="/" element={<Dashboard url={url} setIsAuthenticated={setIsAuthenticated} token={token} setToken={setToken} />} />
-                  {/* <Route path="/addjob" element={<AddJob url={url} setShowAddJob={setShowAddJob} />} /> */}
                   <Route path="/listjob" element={<ListJob url={url} setShowAddJob={setShowAddJob} />} />
                   <Route path="/jobtracker" element={<JobTracker url={url} />} />
                   <Route path="/events" element={<EventDashboard url={url} setShowAddEvent={setShowAddEvent} /> } />
